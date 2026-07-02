@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berpikir Komputasional - Informatika X</title>
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/bk.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <a href="index.html" class="btn-back">⬅️ Kembali ke Menu Utama</a>
+            <h1>Berpikir Komputasional</h1>
+        </header>
+
+        <section class="section-card">
+            <h2>🧠 Apa itu Berpikir Komputasional?</h2>
+            <p>
+                <strong>Berpikir Komputasional (Computational Thinking)</strong> adalah metode menyelesaikan masalah yang melibatkan teknik yang digunakan oleh software engineer dalam menulis program komputer. Konsep ini tidak berarti kita harus berpikir seperti komputer, melainkan bagaimana kita dapat memformulasikan masalah agar dapat diselesaikan dengan bantuan teknologi digital secara efektif dan efisien.
+            </p>
+            <p>
+                Di era Kurikulum Merdeka Fase E, kemampuan ini merupakan fondasi utama sebelum kamu mempelajari algoritma dan pemrograman. Berpikir komputasional memiliki 4 pilar utama:
+            </p>
+
+            <div class="pillar-grid">
+                <div class="pillar-box">
+                    <h3>1. Dekomposisi</h3>
+                    <p style="font-size: 14px;">Memecah masalah kompleks menjadi bagian-bagian kecil yang lebih mudah dikelola.</p>
+                </div>
+                <div class="pillar-box">
+                    <h3>2. Pengenalan Pola</h3>
+                    <p style="font-size: 14px;">Mencari kesamaan atau tren di dalam masalah untuk menentukan solusi yang pernah berhasil sebelumnya.</p>
+                </div>
+                <div class="pillar-box">
+                    <h3>3. Abstraksi</h3>
+                    <p style="font-size: 14px;">Memfokuskan diri pada informasi penting saja dan mengabaikan detail yang kurang relevan.</p>
+                </div>
+                <div class="pillar-box">
+                    <h3>4. Algoritma</h3>
+                    <p style="font-size: 14px;">Menyusun langkah-langkah terstruktur secara berurutan untuk menyelesaikan masalah.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>🎮 Tantangan Algoritma: Pengurutan Angka (Sorting)</h2>
+            <p>
+                Mari terapkan salah satu pilar berpikir komputasional, yaitu <strong>Algoritma</strong>. Di bawah ini terdapat 5 kartu angka acak. Urutkan angka-angka tersebut dari yang <strong>TERKECIL ke TERBESAR</strong> dengan cara menarik (drag) posisi kartu!
+            </p>
+
+            <div class="game-container">
+                <div class="game-instruction">
+                    💡 <strong>Analisis Masalah:</strong> Gunakan pola berpikir algoritma. Bandingkan angka dari kiri ke kanan, lalu posisikan secara berurutan.
+                </div>
+
+                <div class="number-pool" id="sortable-pool">
+                    <div class="num-card" draggable="true" data-value="37">37</div>
+                    <div class="num-card" draggable="true" data-value="12">12</div>
+                    <div class="num-card" draggable="true" data-value="89">89</div>
+                    <div class="num-card" draggable="true" data-value="25">25</div>
+                    <div class="num-card" draggable="true" data-value="50">50</div>
+                </div>
+
+                <div class="game-controls">
+                    <button class="btn-game" onclick="checkSorting()">Periksa Urutan</button>
+                    <button class="btn-game" onclick="resetGame()" style="background:#64748b; margin-left:10px;">Acak Ulang</button>
+                </div>
+
+                <div id="game-message" class="message"></div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>🎮 Game 2: Tebak Struktur Aturan (Pattern Recognition)</h2>
+            <p>
+                Gunakan pilar <strong>Pengenalan Pola</strong>. Analisis barisan angka di bawah ini, temukan pola/aturan matematikanya, lalu isi kotak kosong terakhir dengan jawaban yang tepat!
+            </p>
+
+            <div class="game-container">
+                <div class="game-instruction">
+                    💡 <strong>Tips Berpikir Logis:</strong> Perhatikan selisih atau operasi perkalian/pembagian antar-angka yang berdekatan untuk menemukan rumus polanya.
+                </div>
+
+                <div class="pattern-display">
+                    <div class="pattern-box" id="p1">2</div>
+                    <div class="pattern-box" id="p2">4</div>
+                    <div class="pattern-box" id="p3">8</div>
+                    <div class="pattern-box" id="p4">16</div>
+                    <div class="pattern-box">❓</div>
+                    <input type="number" id="pattern-answer" class="pattern-input" placeholder="...">
+                </div>
+
+                <div class="game-controls">
+                    <button class="btn-game" onclick="checkPattern()">Validasi Jawaban</button>
+                    <button class="btn-game" onclick="generateNewPattern()" style="background:#64748b; margin-left:10px;">Ganti Pola Baru</button>
+                </div>
+
+                <div id="pattern-message" class="message"></div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>📚 Sumber Referensi Materi</h2>
+            <p>Materi pada halaman ini disusun dan diadaptasi berdasarkan panduan resmi Kurikulum Merdeka:</p>
+            <ul class="source-list">
+                <li>Buku Panduan Guru & Buku Siswa Informatika Kelas X, Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi (<a href="https://buku.kemdikbud.go.id" target="_blank">Pusperbuk Kemdikbud</a>).</li>
+                <li>Capaian Pembelajaran (CP) Informatika Fase E - Struktur Kurikulum Merdeka.</li>
+            </ul>
+        </section>
+
+        <footer>
+            © Copyright RSENSEI 2026
+        </footer>
+    </div>
+
+    <script type="application/javascript" src="js/bk.js"></script>
+</body>
+</html>

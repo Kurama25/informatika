@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Komputer & Jaringan - Informatika X</title>
+    <link rel="stylesheet" type="text/css" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/siskom.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <a href="index.html" class="btn-back">⬅️ Kembali ke Menu Utama</a>
+            <h1>Sistem Komputer & Jaringan</h1>
+        </header>
+
+        <section class="menu-grid">
+            <div class="menu-card active" onclick="switchTab('hardware', this)">
+                <div class="icon">🔌</div>
+                <h3>Hardware</h3>
+                <p>Komponen fisik komputer penunjang pemrosesan sistem.</p>
+            </div>
+            <div class="menu-card" onclick="switchTab('software', this)">
+                <div class="icon">💿</div>
+                <h3>Software</h3>
+                <p>Perangkat lunak pengendali instruksi logika hardware.</p>
+            </div>
+            <div class="menu-card" onclick="switchTab('jaringan', this)">
+                <div class="icon">🌐</div>
+                <h3>Jaringan Komputer</h3>
+                <p>Arsitektur komunikasi antar-perangkat dan internet.</p>
+            </div>
+        </section>
+
+        <section id="hardware" class="content-section active">
+            <h2>🔌 Eksplorasi Perangkat Keras (Hardware)</h2>
+            
+            <div class="category-block">
+                <h3>1. Perangkat Masukan (Input Device)</h3>
+                <p>Perangkat yang berfungsi untuk memasukkan data atau perintah dari pengguna ke dalam komputer.</p>
+                <div class="item-grid">
+                    <div class="item-card"><div class="img-container"><img src="img/keyboard.png" alt="Keyboard"></div><h4>Keyboard</h4><p>Mengetik teks, karakter, dan memasukkan perintah pintasan ke sistem.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="img/mouse.png" alt="Mouse"></div><h4>Mouse / Touchpad</h4><p>Menggerakkan kursor grafik serta mengeksekusi aksi klik objek di layar.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="img/scanner.png" alt="Scanner"></div><h4>Scanner</h4><p>Mengubah lembaran dokumen fisik/cetak menjadi berkas format digital.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="img/mikrofon.png" alt="Mikrofon"></div><h4>Mikrofon</h4><p>Menangkap gelombang audio lalu memasukkannya berupa data suara.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="img/webcam.png" alt="Webcam"></div><h4>Kamera / Webcam</h4><p>Mengambil perekaman gambar visual statis maupun siaran video secara langsung.</p></div>
+                </div>
+            </div>
+
+            <div class="category-block">
+                <h3>2. Perangkat Pemrosesan (Processing Device)</h3>
+                <p>Otak komputer yang berfungsi untuk mengolah, menghitung, dan memproses data dari perangkat masukan.</p>
+                <div class="item-grid">
+                    <div class="item-card"><div class="img-container"><img src="img/cpu.png" alt="CPU"></div><h4>CPU</h4><p>Pusat kendali komputer utama yang mengeksekusi semua logika aritmetika instruksi program.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="img/motherboard.png" alt="Motherboard"></div><h4>Motherboard</h4><p>Papan induk sirkuit elektrik utama sebagai wadah penyambung semua modul internal hardware.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="img/gpu.png" alt="GPU"></div><h4>GPU / Kartu Grafis</h4><p>Akselerator khusus untuk komputasi render visual, grafis 3D, pengolahan video, dan beban kerja AI.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="img/ram.png" alt="RAM"></div><h4>RAM</h4><p>Memori penyimpanan jangka pendek super cepat untuk menyimpan antrean beban aplikasi aktif.</p></div>
+                </div>
+            </div>
+
+            <div class="category-block">
+                <h3>3. Perangkat Penyimpanan (Storage Device)</h3>
+                <p>Perangkat yang digunakan untuk menyimpan data secara permanen, baik sistem operasi, aplikasi, maupun berkas mandiri.</p>
+                <div class="item-grid">
+                    <div class="item-card"><div class="img-container"><img src="img/ssd.jpg" alt="SSD"></div><h4>SSD (Solid State Drive)</h4><p>Media penyimpanan modern berbasis chip flash memory yang memberikan performa baca/tulis kilat tanpa komponen mekanis.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="img/hdd.jpg" alt="HDD"></div><h4>HDD (Hard Disk Drive)</h4><p>Media penyimpanan piringan magnetik tradisional dengan kapasitas ruang besar namun transfer data lambat.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="img/flashdisk.png" alt="Flashdisk"></div><h4>Flashdisk / MMC</h4><p>Penyimpanan portabel berukuran micro yang fleksibel digunakan untuk mobilitas pemindahan file.</p></div>
+                </div>
+            </div>
+
+            <div class="category-block">
+                <h3>4. Perangkat Keluaran (Output Device)</h3>
+                <p>Perangkat yang berfungsi untuk menampilkan atau mengeluarkan hasil pemrosesan data komputer ke pengguna akhir.</p>
+                <div class="item-grid">
+                    <div class="item-card"><div class="img-container"><img src="img/monitor.jpg" alt="Monitor"></div><h4>Monitor</h4><p>Layar penampil antarmuka grafis sistem, berkas teks, gambar, hingga aplikasi.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="img/printer.jpg" alt="Printer"></div><h4>Printer</h4><p>Mesin pencetak yang menduplikasi berkas data teks/gambar digital ke media kertas fisik.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="img/speaker.png" alt="Speaker"></div><h4>Speaker / Headphone</h4><p>Transduser output yang mengubah sinyal elektrik digital menjadi gelombang suara yang terdengar.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="img/proyektor.jpg" alt="Proyektor"></div><h4>Proyektor</h4><p>Alat optik yang memancarkan berkas proyeksi gambar komputer ke permukaan dinding datar lebar.</p></div>
+                </div>
+            </div>
+
+            <div class="category-block">
+                <h3>Video Pembelajaran</h3>
+                <div class="item-grid">
+                    <div class="item-card">
+                        <iframe src="https://youtu.be/Kq1PqZHAJmY?si=MMNM8Ye5aKiMv5lX" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-container">
+                <h3 style="color:#0f172a; background:none; padding:0; margin-bottom:5px;">🎮 Mini-Lab: Simulasi Merakit PC</h3>
+                <p style="color:#555;">Terapkan pemahaman logika fungsi hardware! Drag komponen di sisi kiri ke dalam wadah soket yang cocok di sisi kanan.</p>
+                <div class="assembly-zone">
+                    <div class="part-box">
+                        <div class="part-list">
+                            <div class="drag-part" draggable="true" id="g-cpu">Processor (CPU)</div>
+                            <div class="drag-part" draggable="true" id="g-ram">RAM Memory</div>
+                            <div class="drag-part" draggable="true" id="g-mobo">Motherboard Board</div>
+                        </div>
+                    </div>
+                    <div class="slots-box">
+                        <div class="target-slot" id="s-mobo" data-accept="g-mobo">Dudukan Casing Komputer</div>
+                        <div class="target-slot" id="s-cpu" data-accept="g-cpu">Soket Persegi Kunci Processor</div>
+                        <div class="target-slot" id="s-ram" data-accept="g-ram">Slot DIMM Panjang Motherboard</div>
+                    </div>
+                </div>
+                <div class="game-controls"><button class="btn-game" onclick="resetAssemblyGame()">Reset Perakitan</button></div>
+                <div id="assembly-message" class="message"></div>
+            </div>
+        </section>
+
+        <section id="software" class="content-section">
+            <h2>💿 Eksplorasi Perangkat Lunak (Software)</h2>
+            <div class="category-block">
+                <h3>1. Perangkat Lunak Sistem (System Software)</h3>
+                <p>Perangkat utama pembentuk dasar operasional yang mengelola alokasi hardware internal.</p>
+                <div class="item-grid">
+                    <div class="item-card"><div class="img-container"><img src="" alt="Operating System"></div><h4>Sistem Operasi (OS)</h4><p>Pengendali sistem inti komputer (Contoh: Windows, Linux, macOS) yang mengatur manajemen resource memori dan disk drive.</p></div>
+                </div>
+            </div>
+            <div class="category-block">
+                <h3>2. Perangkat Lunak Aplikasi (Application Software)</h3>
+                <p>Program pelengkap modular khusus yang dieksekusi user untuk menunjang aktivitas produktivitas atau hiburan.</p>
+                <div class="item-grid">
+                    <div class="item-card"><div class="img-container"><img src="" alt="Web Browser"></div><h4>Web Browser</h4><p>Pintu akses berselancar internet (Contoh: Google Chrome, Firefox) untuk memuat skrip web.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="" alt="Code Editor"></div><h4>Editor Kode / IDE</h4><p>Lingkungan penulisan baris sintaks bahasa pemrograman (Contoh: VS Code) bagi developer web/mobile.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="jaringan" class="content-section">
+            <h2>🌐 Infrastruktur Jaringan Komputer & Internet</h2>
+            <div class="category-block">
+                <h3>1. Perangkat Jaringan (Networking Device)</h3>
+                <p>Hardware khusus penunjang interkoneksi lalu lintas transmisi data antar-node komputer terenkripsi.</p>
+                <div class="item-grid">
+                    <div class="item-card"><div class="img-container"><img src="" alt="Modem"></div><h4>Modem</h4><p>Modulator-demodulator yang menerjemahkan sinyal ISP penyedia internet luar menjadi jalur data digital lokal.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="" alt="Router"></div><h4>Router</h4><p>Perute cerdas yang memetakan gerbang IP address, menjembatani submateri routing, dan memancarkan sinyal Wi-Fi nirkabel.</p></div>
+                    <div class="item-card"><div class="img-container"><img src="" alt="LAN Card"></div><h4>NIC / LAN Card</h4><p>Kartu kendali antar muka jaringan kabel ethernet fisik sebagai modul penerima paket data.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card" style="margin-top:25px;">
+            <h2>📚 Sumber Referensi Materi</h2>
+            <ul class="source-list">
+                <li>Buku Siswa Informatika SMK/SMA Kelas X, Elemen Sistem Komputer & Jaringan Komputer Internet, Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI.</li>
+                <li>Modul Ajar Dasar Pemasangan Hardware & Pengenalan Perangkat Jaringan Telekomunikasi Cisco.</li>
+            </ul>
+        </section>
+
+        <footer>© Copyright RSENSEI 2026</footer>
+    </div>
+
+    <script type="application/javascript" src="js/siskom.js"></script>
+</body>
+</html>

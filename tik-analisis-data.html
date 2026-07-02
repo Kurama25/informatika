@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIK & Analisis Data - Informatika X</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#0f172a,#1e3a8a,#0891b2);
+            color:#fff;
+            min-height:100vh;
+            padding-bottom: 40px;
+        }
+
+        .container{
+            width:90%;
+            max-width:1000px;
+            margin:auto;
+        }
+
+        header{
+            text-align:center;
+            padding:40px 20px 20px;
+        }
+
+        header h1{
+            font-size:42px;
+            letter-spacing:2px;
+            margin-bottom:10px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-top: 15px;
+            font-size: 14px;
+            transition: .3s;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .btn-back:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-5px);
+        }
+
+        .section-card {
+            margin-top: 25px;
+            background: rgba(255,255,255,.08);
+            backdrop-filter: blur(8px);
+            border-radius: 18px;
+            padding: 35px;
+            line-height: 1.8;
+            box-shadow: 0 10px 25px rgba(0,0,0,.25);
+        }
+
+        .section-card h2 {
+            margin-bottom: 20px;
+            color: #22d3ee;
+            border-bottom: 2px solid rgba(34, 211, 238, 0.2);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul.materi-list {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Interactive Dashboard Styles */
+        .dashboard-container {
+            background: #fff;
+            color: #333;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .grid-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            padding: 8px 12px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #0f172a;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #0891b2;
+        }
+
+        /* Visualisasi Bar Chart Sederhana lewat CSS */
+        .chart-area {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 200px;
+            background: #f8fafc;
+            border-bottom: 3px solid #334155;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+
+        .bar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 15%;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        .bar {
+            width: 100%;
+            background: linear-gradient(to top, #1e3a8a, #0891b2);
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease-in-out;
+            position: relative;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        .bar-label {
+            margin-top: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .summary-box {
+            background: #ecfeff;
+            border: 1px solid #cffafe;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .summary-item span {
+            display: block;
+            font-size: 20px;
+            font-weight: bold;
+            color: #0891b2;
+        }
+
+        .source-list {
+            margin-top: 15px;
+            padding-left: 20px;
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+
+        .source-list a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        .source-list a:hover { text-decoration: underline; }
+
+        footer{
+            text-align:center;
+            padding:30px;
+            color:#dbeafe;
+            font-size:15px;
+            border-top:1px solid rgba(255,255,255,.2);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <a href="index.html" class="btn-back">⬅️ Kembali ke Menu Utama</a>
+            <h1>TIK & Analisis Data</h1>
+        </header>
+
+        <section class="section-card">
+            <h2>📊 Teknologi Informasi & Komunikasi (TIK)</h2>
+            <p>
+                Pada jenjang Kelas X SMK, pemanfaatan TIK tidak lagi sekadar belajar mengetik, melainkan berfokus pada <strong>Integrasi Konten Aplikasi Perkantoran</strong>. Kamu diajarkan untuk menghubungkan berbagai data antar-aplikasi secara otomatis demi efisiensi kerja profesional.
+            </p>
+            <p>Dua teknik integrasi data utama yang sering digunakan adalah:</p>
+            <ul class="materi-list">
+                <li><strong>Object Embedding:</strong> Menanamkan objek dari suatu aplikasi ke aplikasi lain. Jika file sumber diubah, objek di file tujuan tidak ikut berubah secara otomatis.</li>
+                <li><strong>Object Linking:</strong> Menghubungkan data antar-aplikasi. Perubahan data pada file sumber (misal: tabel Excel) akan langsung memperbarui grafik di file tujuan (misal: Word atau PowerPoint) secara otomatis (real-time).</li>
+            </ul>
+        </section>
+
+        <section class="section-card">
+            <h2>📈 Fondasi Analisis Data</h2>
+            <p>
+                <strong>Analisis Data</strong> adalah proses pengumpulan, transformasi, pembersihan, dan pemodelan data dengan tujuan menemukan informasi yang berguna, mendukung pengambilan keputusan, dan membuat kesimpulan yang tepat.
+            </p>
+            <p>Proses dasar dalam mengolah data meliputi:</p>
+            <ul class="materi-list">
+                <li><strong>Pengumpulan Data:</strong> Mencari data mentah melalui survei, log sistem, atau observasi.</li>
+                <li><strong>Pembersihan Data (Data Cleaning):</strong> Membuang data yang duplikat, kosong, atau tidak valid.</li>
+                <li><strong>Analisis Korelasi & Statistik:</strong> Menggunakan rumus matematika (seperti Total/SUM, Rata-rata/AVERAGE, Nilai Tertinggi/MAX) untuk mencari makna dari kumpulan angka.</li>
+                <li><strong>Visualisasi Data:</strong> Menyajikan data dalam bentuk grafik batang, garis, atau lingkaran agar lebih mudah dipahami oleh audiens dalam sekejap mata.</li>
+            </ul>
+        </section>
+
+        <section class="section-card">
+            <h2>🎮 Laboratorium Data Virtual: Input & Visualisasi</h2>
+            <p>
+                Mari simulasikan peran seorang *Data Analyst*. Di bawah ini adalah ringkasan data omset penjualan digital printing (dalam jutaan rupiah) dari bulan Januari hingga April. 
+                <strong>Ubah angka pada kotak input</strong> untuk melihat bagaimana sistem melakukan kalkulasi statistik dasar dan memperbarui grafik visualisasi secara otomatis!
+            </p>
+
+            <div class="dashboard-container">
+                <div class="summary-box">
+                    <div class="summary-item">
+                        <label style="font-size:12px; color:#64748b;">Total Omset</label>
+                        <span id="stat-total">0 Juta</span>
+                    </div>
+                    <div class="summary-item">
+                        <label style="font-size:12px; color:#64748b;">Rata-rata</label>
+                        <span id="stat-average">0 Juta</span>
+                    </div>
+                    <div class="summary-item">
+                        <label style="font-size:12px; color:#64748b;">Maksimum</label>
+                        <span id="stat-max">0 Juta</span>
+                    </div>
+                </div>
+
+                <div class="grid-inputs">
+                    <div class="input-group">
+                        <label for="val-jan">Januari</label>
+                        <input type="number" id="val-jan" value="12" min="1" max="50" oninput="updateDashboard()">
+                    </div>
+                    <div class="input-group">
+                        <label for="val-feb">Februari</label>
+                        <input type="number" id="val-feb" value="25" min="1" max="50" oninput="updateDashboard()">
+                    </div>
+                    <div class="input-group">
+                        <label for="val-mar">Maret</label>
+                        <input type="number" id="val-mar" value="18" min="1" max="50" oninput="updateDashboard()">
+                    </div>
+                    <div class="input-group">
+                        <label for="val-apr">April</label>
+                        <input type="number" id="val-apr" value="35" min="1" max="50" oninput="updateDashboard()">
+                    </div>
+                </div>
+
+                <div class="chart-area">
+                    <div class="bar-container">
+                        <div class="bar" id="bar-jan" style="height: 0%;"><div class="bar-value" id="lbl-jan">0</div></div>
+                        <div class="bar-label">Jan</div>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar" id="bar-feb" style="height: 0%;"><div class="bar-value" id="lbl-feb">0</div></div>
+                        <div class="bar-label">Feb</div>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar" id="bar-mar" style="height: 0%;"><div class="bar-value" id="lbl-mar">0</div></div>
+                        <div class="bar-label">Mar</div>
+                    </div>
+                    <div class="bar-container">
+                        <div class="bar" id="bar-apr" style="height: 0%;"><div class="bar-value" id="lbl-apr">0</div></div>
+                        <div class="bar-label">Apr</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>📚 Sumber Referensi Materi</h2>
+            <p>Materi pembelajaran TIK dan Analisis Data ini merujuk kepada kurikulum nasional:</p>
+            <ul class="source-list">
+                <li>Buku Siswa Informatika Kelas X, Elemen Teknologi Informasi dan Komunikasi & Analisis Data, Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI.</li>
+                <li>Modul Ajar Informatika Fase E - Integrasi Aplikasi Perkantoran dan Pengolahan Data Dasar Spreadsheet.</li>
+            </ul>
+        </section>
+
+        <footer>
+            © Copyright RSENSEI 2026
+        </footer>
+    </div>
+
+    <script>
+        function updateDashboard() {
+            // 1. Ambil nilai input dari form
+            const jan = parseInt(document.getElementById('val-jan').value) || 0;
+            const feb = parseInt(document.getElementById('val-feb').value) || 0;
+            const mar = parseInt(document.getElementById('val-mar').value) || 0;
+            const apr = parseInt(document.getElementById('val-apr').value) || 0;
+
+            const dataArray = [jan, feb, mar, apr];
+
+            // 2. Lakukan Operasi Analisis Data (Statistik Dasar)
+            const total = dataArray.reduce((acc, curr) => acc + curr, 0);
+            const average = total / dataArray.length;
+            const max = Math.max(...dataArray);
+
+            // 3. Tampilkan hasil kalkulasi ke ringkasan statistik
+            document.getElementById('stat-total').innerText = total + " Juta";
+            document.getElementById('stat-average').innerText = average.toFixed(1) + " Juta";
+            document.getElementById('stat-max').innerText = max + " Juta";
+
+            // 4. Update Visualisasi Grafik Batang secara Real-time
+            // Skala maksimal grafik ditentukan 50 (sesuai input max atribut html) untuk kalkulasi tinggi persen
+            const maxScale = 50; 
+
+            const barJan = document.getElementById('bar-jan');
+            barJan.style.height = (jan / maxScale * 100) + '%';
+            document.getElementById('lbl-jan').innerText = jan;
+
+            const barFeb = document.getElementById('bar-feb');
+            barFeb.style.height = (feb / maxScale * 100) + '%';
+            document.getElementById('lbl-feb').innerText = feb;
+
+            const barMar = document.getElementById('bar-mar');
+            barMar.style.height = (mar / maxScale * 100) + '%';
+            document.getElementById('lbl-mar').innerText = mar;
+
+            const barApr = document.getElementById('bar-apr');
+            barApr.style.height = (apr / maxScale * 100) + '%';
+            document.getElementById('lbl-apr').innerText = apr;
+        }
+
+        // Jalankan kalkulasi pertama kali saat halaman dimuat
+        window.onload = function() {
+            updateDashboard();
+        }
+    </script>
+</body>
+</html>
