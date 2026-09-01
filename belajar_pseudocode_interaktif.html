@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Pembelajaran Interaktif: Pseudocode</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Glassmorphism background */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 12px 24px -10px rgba(99, 102, 241, 0.2);
+        }
+
+        .active-line {
+            background-color: rgba(99, 102, 241, 0.25);
+            border-left: 4px solid #6366f1;
+        }
+
+        .executed-line {
+            background-color: rgba(34, 197, 94, 0.15);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .pulse-effect {
+            animation: pulse-subtle 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- Header Navbar -->
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-800 bg-slate-900/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-500/30">
+                    &lt;/&gt;
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg sm:text-xl text-white tracking-tight flex items-center gap-2">
+                        Pembelajaran Pseudocode <span class="text-xs bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-full font-semibold">Interaktif</span>
+                    </h1>
+                    <p class="text-xs text-slate-400 hidden sm:block">Perancangan Algoritma & Logika Pemrograman Pemula</p>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="flex space-x-1 sm:space-x-2 bg-slate-800/80 p-1 rounded-xl border border-slate-700/50 text-xs sm:text-sm">
+                <button onclick="switchTab('materi')" id="tab-materi" class="nav-btn px-3 py-1.5 rounded-lg font-medium transition-all duration-200 bg-indigo-600 text-white shadow">
+                    <i class="fa-solid fa-book-open mr-1.5"></i> Materi
+                </button>
+                <button onclick="switchTab('simulator')" id="tab-simulator" class="nav-btn px-3 py-1.5 rounded-lg font-medium transition-all duration-200 text-slate-400 hover:text-white hover:bg-slate-700/50">
+                    <i class="fa-solid fa-play mr-1.5 text-emerald-400"></i> Simulator
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- TAB 1: MATERI LENGKAP -->
+        <div id="content-materi" class="space-y-8 animate-fadeIn">
+
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-900/80 via-purple-900/60 to-slate-900 border border-indigo-500/30 p-6 sm:p-10">
+                <div class="relative z-10 max-w-3xl space-y-4">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+                        <i class="fa-solid fa-lightbulb text-amber-300"></i> Logika Pemrograman Dasar
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-white leading-tight">
+                        Jembatan Antara <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Bahasa Manusia</span> & <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Komputer</span>
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Pseudocode memudahkan Anda merancang alur logika program tanpa harus mengkhawatirkan aturan sintaks bahasa pemrograman yang rumit.
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <button onclick="switchTab('simulator')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl text-sm transition shadow-lg shadow-indigo-600/30 flex items-center gap-2">
+                            Coba Simulasi Langsung <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <a href="#bagian-1" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-xl text-sm border border-slate-700 transition">
+                            Pelajari Teori
+                        </a>
+                    </div>
+                </div>
+                <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none text-9xl text-indigo-400 font-mono">
+                    { ... }
+                </div>
+            </div>
+
+            <!-- Grid Modul 1 & 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="bagian-1">
+                <!-- 1. Apa itu Pseudocode -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 mb-4 font-bold">
+                            1
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Apa itu Pseudocode?</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                            <strong>Pseudocode</strong> adalah cara menuliskan langkah-langkah algoritma menggunakan bentuk yang menyerupai kode program, tetapi tetap menggunakan bahasa yang mudah dipahami manusia.
+                        </p>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4 bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                            <i class="fa-solid fa-info-circle text-blue-400 mr-1"></i> Pseudocode <strong>bukan bahasa pemrograman</strong> sehingga tidak dapat langsung dijalankan oleh komputer. Digunakan untuk merancang logika sebelum diterjemahkan ke Python, Java, PHP, atau JS.
+                        </p>
+                    </div>
+
+                    <!-- Flow Diagram Card -->
+                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 space-y-2">
+                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Alur Hubungan:</div>
+                        <div class="flex items-center justify-between text-xs sm:text-sm font-medium">
+                            <span class="bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-700 text-slate-300">Algoritma</span>
+                            <i class="fa-solid fa-chevron-right text-indigo-400"></i>
+                            <span class="bg-indigo-900/50 px-2.5 py-1.5 rounded-lg border border-indigo-500/40 text-indigo-200 font-semibold">Pseudocode</span>
+                            <i class="fa-solid fa-chevron-right text-indigo-400"></i>
+                            <span class="bg-emerald-900/50 px-2.5 py-1.5 rounded-lg border border-emerald-500/40 text-emerald-200">Program</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Mengapa Menggunakan Pseudocode -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 mb-4 font-bold">
+                            2
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Mengapa Menggunakan Pseudocode?</h3>
+                        <ul class="space-y-2.5 text-sm text-slate-300 mb-4">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-purple-400 mt-1"></i>
+                                <span>Merancang solusi secara sistematis sebelum membuat program.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-purple-400 mt-1"></i>
+                                <span>Membuat logika program lebih mudah dipahami oleh tim.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-purple-400 mt-1"></i>
+                                <span>Membantu menemukan kesalahan logika (bug) sebelum coding.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-purple-400 mt-1"></i>
+                                <span>Bebas dari sintaks kaku bahasa pemrograman tertentu.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-950/30 border border-purple-500/30 p-3.5 rounded-xl text-xs text-purple-200 flex items-center gap-3">
+                        <i class="fa-solid fa-star text-amber-400 text-lg"></i>
+                        <span><strong>Hal Penting:</strong> Tidak ada aturan sintaks baku yang wajib! Yang terpenting adalah logikanya jelas, terurut, dan mudah dipahami.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modul 3 & 4: Struktur Dasar & IPO -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <!-- Struktur Dasar Table -->
+                <div class="lg:col-span-2 glass-card rounded-2xl p-6 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 font-bold">
+                                3
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Struktur & Perintah Dasar</h3>
+                                <p class="text-xs text-slate-400">Kata kunci umum yang sering digunakan pemula</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-300">
+                            <thead class="bg-slate-900/80 text-xs uppercase text-slate-400 border-b border-slate-800">
+                                <tr>
+                                    <th class="py-3 px-4 rounded-l-lg">Perintah</th>
+                                    <th class="py-3 px-4">Fungsi Utama</th>
+                                    <th class="py-3 px-4 rounded-r-lg">Contoh Penggunaan</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800/60 font-mono text-xs sm:text-sm">
+                                <tr class="hover:bg-slate-800/40">
+                                    <td class="py-2.5 px-4 font-bold text-pink-400">START</td>
+                                    <td class="py-2.5 px-4 font-sans text-slate-300">Menandai awal algoritma</td>
+                                    <td class="py-2.5 px-4 text-slate-400">START</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/40">
+                                    <td class="py-2.5 px-4 font-bold text-pink-400">END</td>
+                                    <td class="py-2.5 px-4 font-sans text-slate-300">Menandai akhir algoritma</td>
+                                    <td class="py-2.5 px-4 text-slate-400">END</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/40">
+                                    <td class="py-2.5 px-4 font-bold text-sky-400">INPUT</td>
+                                    <td class="py-2.5 px-4 font-sans text-slate-300">Memasukkan data dari pengguna</td>
+                                    <td class="py-2.5 px-4 text-sky-300">INPUT nama</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/40">
+                                    <td class="py-2.5 px-4 font-bold text-emerald-400">OUTPUT</td>
+                                    <td class="py-2.5 px-4 font-sans text-slate-300">Menampilkan hasil ke layar</td>
+                                    <td class="py-2.5 px-4 text-emerald-300">OUTPUT total</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/40">
+                                    <td class="py-2.5 px-4 font-bold text-amber-400">←</td>
+                                    <td class="py-2.5 px-4 font-sans text-slate-300">Memberikan nilai pada variabel (Assignment)</td>
+                                    <td class="py-2.5 px-4 text-amber-300">total ← harga × jumlah</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/40">
+                                    <td class="py-2.5 px-4 font-bold text-indigo-400">IF / ELSE</td>
+                                    <td class="py-2.5 px-4 font-sans text-slate-300">Memeriksa kondisi percabangan</td>
+                                    <td class="py-2.5 px-4 text-indigo-300">IF nilai &gt;= 75 THEN ...</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/40">
+                                    <td class="py-2.5 px-4 font-bold text-purple-400">FOR / WHILE</td>
+                                    <td class="py-2.5 px-4 font-sans text-slate-300">Perulangan (Looping)</td>
+                                    <td class="py-2.5 px-4 text-purple-300">FOR i ← 1 TO 5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Modul 4: IPO Concept -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold mb-4">
+                            4
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Konsep Input–Process–Output</h3>
+                        <p class="text-slate-300 text-sm mb-4">
+                            Pola paling mendasar yang perlu dikuasai dalam pemrograman:
+                        </p>
+
+                        <div class="space-y-3">
+                            <div class="p-3 rounded-xl bg-sky-950/40 border border-sky-500/30">
+                                <div class="text-xs font-bold text-sky-400 uppercase tracking-wider">1. Input</div>
+                                <div class="text-xs text-slate-300">Data masukan (Contoh: <code>harga</code>, <code>jumlah</code>, <code>nilai</code>)</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-amber-950/40 border border-amber-500/30">
+                                <div class="text-xs font-bold text-amber-400 uppercase tracking-wider">2. Process</div>
+                                <div class="text-xs text-slate-300">Pengolahan data (Contoh: <code>total ← harga × jumlah</code>)</div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30">
+                                <div class="text-xs font-bold text-emerald-400 uppercase tracking-wider">3. Output</div>
+                                <div class="text-xs text-slate-300">Hasil pengolahan (Contoh: <code>total harga</code>, <code>status lulus</code>)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modul 5 & 6: Branching & Writing Rules -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                <!-- 5. Pseudocode Percabangan -->
+                <div class="glass-card rounded-2xl p-6 space-y-4">
+                    <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 font-bold">
+                            5
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Percabangan (IF-ELSE)</h3>
+                            <p class="text-xs text-slate-400">Pengambilan keputusan berdasarkan kondisi</p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-slate-300">
+                        Ketika program harus memilih langkah berdasarkan kriteria tertentu (misal: Menentukan Kelulusan nilai &gt;= 75).
+                    </p>
+
+                    <!-- Code Example -->
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 code-font text-xs sm:text-sm space-y-1">
+                        <div><span class="text-pink-400 font-bold">START</span></div>
+                        <div class="pl-4"><span class="text-sky-400 font-bold">INPUT</span> nilai</div>
+                        <div class="pl-4 text-slate-400"><i class="fa-solid fa-turn-down text-indigo-400 mr-1"></i> Periksa kondisi:</div>
+                        <div class="pl-4"><span class="text-indigo-400 font-bold">IF</span> nilai &gt;= 75 <span class="text-indigo-400 font-bold">THEN</span></div>
+                        <div class="pl-8 text-emerald-300"><span class="text-emerald-400 font-bold">OUTPUT</span> <span class="text-emerald-200">"Lulus"</span></div>
+                        <div class="pl-4"><span class="text-indigo-400 font-bold">ELSE</span></div>
+                        <div class="pl-8 text-rose-300"><span class="text-rose-400 font-bold">OUTPUT</span> <span class="text-rose-200">"Tidak Lulus"</span></div>
+                        <div class="pl-4"><span class="text-indigo-400 font-bold">END IF</span></div>
+                        <div><span class="text-pink-400 font-bold">END</span></div>
+                    </div>
+                </div>
+
+                <!-- 6. Aturan Penulisan Pseudocode -->
+                <div class="glass-card rounded-2xl p-6 space-y-4">
+                    <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
+                        <div class="w-10 h-10 rounded-xl bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400 font-bold">
+                            6
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">5 Aturan Penulisan Terbaik</h3>
+                            <p class="text-xs text-slate-400">Agar pseudocode mudah dibaca manusia & dipahami</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2.5 text-xs sm:text-sm text-slate-300">
+                        <div class="flex items-start gap-3 p-2.5 rounded-lg bg-slate-900/50 border border-slate-800">
+                            <span class="bg-slate-800 px-2 py-0.5 rounded text-indigo-400 font-bold">1</span>
+                            <div><strong>Berurutan:</strong> Tuliskan langkah secara logis tanpa melompat-lompat.</div>
+                        </div>
+                        <div class="flex items-start gap-3 p-2.5 rounded-lg bg-slate-900/50 border border-slate-800">
+                            <span class="bg-slate-800 px-2 py-0.5 rounded text-indigo-400 font-bold">2</span>
+                            <div><strong>Kata Kunci Jelas:</strong> Gunakan <code>INPUT nilai</code> daripada <code>x ← ?</code>.</div>
+                        </div>
+                        <div class="flex items-start gap-3 p-2.5 rounded-lg bg-slate-900/50 border border-slate-800">
+                            <span class="bg-slate-800 px-2 py-0.5 rounded text-indigo-400 font-bold">3</span>
+                            <div><strong>Nama Variabel Bermakna:</strong> Gunakan <code>harga</code>, <code>total</code> daripada <code>a</code>, <code>b</code>.</div>
+                        </div>
+                        <div class="flex items-start gap-3 p-2.5 rounded-lg bg-slate-900/50 border border-slate-800">
+                            <span class="bg-slate-800 px-2 py-0.5 rounded text-indigo-400 font-bold">4</span>
+                            <div><strong>Indentasi (Spasi):</strong> Berikan tab/spasi di dalam struktur blok <code>IF</code> atau <code>FOR</code>.</div>
+                        </div>
+                        <div class="flex items-start gap-3 p-2.5 rounded-lg bg-slate-900/50 border border-slate-800">
+                            <span class="bg-slate-800 px-2 py-0.5 rounded text-indigo-400 font-bold">5</span>
+                            <div><strong>Fokus Logika:</strong> Jangan terlalu terikat sintaks kaku bahasa tertentu.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modul 7: Tabel Perbandingan Algoritma - Pseudocode - Program -->
+            <div class="glass-card rounded-2xl p-6 space-y-4">
+                <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
+                    <div class="w-10 h-10 rounded-xl bg-teal-500/20 border border-teal-500/40 flex items-center justify-center text-teal-400 font-bold">
+                        7
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Perbedaan Algoritma, Pseudocode, & Program</h3>
+                        <p class="text-xs text-slate-400">Memahami posisi pseudocode dalam alur pembuatan aplikasi</p>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm text-slate-300">
+                        <thead class="bg-slate-900 text-xs uppercase text-slate-400 border-b border-slate-800">
+                            <tr>
+                                <th class="py-3 px-4">Kategori</th>
+                                <th class="py-3 px-4 text-sky-400">1. Algoritma</th>
+                                <th class="py-3 px-4 text-indigo-400">2. Pseudocode</th>
+                                <th class="py-3 px-4 text-emerald-400">3. Program (Python)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60">
+                            <tr>
+                                <td class="py-3 px-4 font-semibold text-slate-200">Tujuan Utama</td>
+                                <td class="py-3 px-4">Menjelaskan langkah penyelesaian masalah</td>
+                                <td class="py-3 px-4 font-semibold text-indigo-300">Merancang logika program</td>
+                                <td class="py-3 px-4">Menjalankan solusi di komputer</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 font-semibold text-slate-200">Bentuk Format</td>
+                                <td class="py-3 px-4">Kalimat deskriptif</td>
+                                <td class="py-3 px-4 text-indigo-300">Mirip struktur kode program</td>
+                                <td class="py-3 px-4 code-font text-emerald-300">Kode Bahasa Pemrograman</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 font-semibold text-slate-200">Bahasa</td>
+                                <td class="py-3 px-4">Bahasa Manusia sehari-hari</td>
+                                <td class="py-3 px-4 text-indigo-300">Bahasa Manusia + Kata Kunci Kode</td>
+                                <td class="py-3 px-4">Sintaks Komputer Kaku</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 font-semibold text-slate-200">Dapat Dijalankan Komputer?</td>
+                                <td class="py-3 px-4 text-rose-400 font-semibold"><i class="fa-solid fa-xmark mr-1"></i> Tidak</td>
+                                <td class="py-3 px-4 text-rose-400 font-semibold"><i class="fa-solid fa-xmark mr-1"></i> Tidak</td>
+                                <td class="py-3 px-4 text-emerald-400 font-semibold"><i class="fa-solid fa-check mr-1"></i> Ya (Bisa)</td>
+                            </tr>
+                            <tr class="bg-slate-900/50">
+                                <td class="py-3 px-4 font-semibold text-slate-200">Contoh Kasus</td>
+                                <td class="py-3 px-4 italic text-slate-400">"Masukkan nilai, lalu periksa apakah minimal 75..."</td>
+                                <td class="py-3 px-4 code-font text-indigo-300">IF nilai &gt;= 75 THEN...</td>
+                                <td class="py-3 px-4 code-font text-emerald-300">if nilai &gt;= 75:</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Summary Bar -->
+                <div class="bg-indigo-950/40 border border-indigo-500/30 p-4 rounded-xl flex items-center justify-between text-xs sm:text-sm">
+                    <div class="flex items-center gap-2 text-indigo-200">
+                        <i class="fa-solid fa-bullseye text-amber-400"></i>
+                        <span><strong>Inti Yang Harus Diingat Siswa:</strong></span>
+                    </div>
+                    <div class="code-font text-xs font-semibold text-emerald-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+                        INPUT ➔ PROCESS / CONDITION ➔ OUTPUT
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TAB 2: INTERACTIVE SIMULATOR (DRY-RUN EXECUTER) -->
+        <div id="content-simulator" class="hidden space-y-6 animate-fadeIn">
+
+            <!-- Title Header -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-terminal text-emerald-400"></i> Simulator Executer Pseudocode
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-400">
+                        Lihat bagaimana komputer memproses pseudocode baris demi baris, melacak memori variabel, dan menghasilkan output.
+                    </p>
+                </div>
+
+                <!-- Select Problem Preset -->
+                <div class="w-full sm:w-auto">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Pilih Studi Kasus:</label>
+                    <select id="sim-preset-select" onchange="loadPreset(this.value)" class="w-full sm:w-64 bg-slate-900 text-white border border-slate-700 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-indigo-500">
+                        <option value="luas">1. Menhitung Luas Persegi Panjang</option>
+                        <option value="total">2. Menghitung Total Harga Barang</option>
+                        <option value="kelulusan">3. Menentukan Kelulusan Siswa (IF-ELSE)</option>
+                        <option value="genapganjil">4. Menentukan Bilangan Genap/Ganjil (MOD)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Workspace Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+                <!-- Input Controls & Controls (Left 4 cols) -->
+                <div class="lg:col-span-4 space-y-6">
+
+                    <!-- Input Parameters Form -->
+                    <div class="glass-card rounded-2xl p-6 space-y-4">
+                        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-indigo-400"></i> Parameter Input
+                        </h3>
+                        <div id="dynamic-input-container" class="space-y-3">
+                            <!-- Injected dynamically by JS based on selected preset -->
+                        </div>
+                    </div>
+
+                    <!-- Simulator Execution Controls -->
+                    <div class="glass-card rounded-2xl p-6 space-y-4">
+                        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-play text-emerald-400"></i> Kontrol Eksekusi
+                        </h3>
+
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="startSimulation()" id="btn-play" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30">
+                                <i class="fa-solid fa-play"></i> Jalankan Semua
+                            </button>
+                            <button onclick="stepSimulation()" id="btn-step" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/30">
+                                <i class="fa-solid fa-forward-step"></i> Langkah (Step)
+                            </button>
+                        </div>
+
+                        <button onclick="resetSimulation()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-2 rounded-xl text-xs transition border border-slate-700 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-rotate-left"></i> Reset Simulation
+                        </button>
+
+                        <div class="pt-2 text-xs text-slate-400 flex items-center justify-between border-t border-slate-800">
+                            <span>Status:</span>
+                            <span id="sim-status-badge" class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono text-xs">Siap (Idle)</span>
+                        </div>
+                    </div>
+
+                    <!-- Variable Memory Visualizer -->
+                    <div class="glass-card rounded-2xl p-6 space-y-3">
+                        <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-memory text-purple-400"></i> Memori Variabel
+                        </h3>
+                        <div id="memory-table-container" class="bg-slate-950 rounded-xl border border-slate-800 p-3 min-h-[100px] text-xs font-mono space-y-1 text-slate-400">
+                            <div class="text-center py-4 italic text-slate-600">Variabel belum terisi</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Code View & Output Console (Right 8 cols) -->
+                <div class="lg:col-span-8 space-y-6">
+
+                    <!-- Code Visualizer Block -->
+                    <div class="glass-card rounded-2xl p-6 space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                            <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-code"></i> Visualisasi Baris Kode
+                            </span>
+                            <span id="step-counter-text" class="text-xs text-slate-400 font-mono">Baris 0 dari 0</span>
+                        </div>
+
+                        <!-- Code Lines Box -->
+                        <div id="code-lines-box" class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs sm:text-sm space-y-1 overflow-x-auto min-h-[220px]">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Output Console & IPO Tracker -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <!-- Output Monitor -->
+                        <div class="glass-card rounded-2xl p-5 space-y-3">
+                            <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-desktop text-sky-400"></i> Konsol Output layar
+                            </h4>
+                            <div id="console-output" class="bg-slate-950 border border-slate-800 p-3 rounded-xl font-mono text-xs min-h-[100px] max-h-[140px] overflow-y-auto text-emerald-400">
+                                <span class="text-slate-600 italic">&gt; Tunggu eksekusi...</span>
+                            </div>
+                        </div>
+
+                        <!-- Equivalent Python Code -->
+                        <div class="glass-card rounded-2xl p-5 space-y-3">
+                            <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-brands fa-python text-amber-400"></i> Padanan Kode Python
+                            </h4>
+                            <div id="python-equivalent-code" class="bg-slate-950 border border-slate-800 p-3 rounded-xl font-mono text-xs min-h-[100px] max-h-[140px] overflow-y-auto text-amber-200">
+                                <!-- Injected dynamically -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TAB 3: KUIS EVALUASI -->
+        <div id="content-kuis" class="hidden space-y-6 animate-fadeIn">
+
+            <!-- Quiz Header -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-award text-amber-400"></i> Kuis Evaluasi Pemahaman Pseudocode
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-400">
+                        Uji pengetahuan Anda mengenai konsep, perintah dasar, percabangan, dan logika IPO.
+                    </p>
+                </div>
+                <div class="bg-slate-900 px-4 py-2 rounded-xl border border-slate-800 text-xs font-mono text-indigo-300">
+                    Skor: <span id="quiz-score-badge" class="font-bold text-amber-400 text-sm">0</span> / 100
+                </div>
+            </div>
+
+            <!-- Quiz Container Card -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 max-w-3xl mx-auto space-y-6">
+
+                <!-- Question Header -->
+                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                    <span id="quiz-number-tag" class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Pertanyaan 1 dari 5</span>
+                    <span id="quiz-progress-bar-text" class="text-xs text-slate-400 font-mono">Progress: 20%</span>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-slate-800 rounded-full h-2">
+                    <div id="quiz-progress-fill" class="bg-gradient-to-r from-indigo-500 to-emerald-400 h-2 rounded-full transition-all duration-300" style="width: 20%;"></div>
+                </div>
+
+                <!-- Question Text -->
+                <div id="quiz-question-text" class="text-base sm:text-lg font-semibold text-white leading-snug">
+                    <!-- Injected dynamically -->
+                </div>
+
+                <!-- Options List -->
+                <div id="quiz-options-container" class="space-y-3">
+                    <!-- Injected dynamically -->
+                </div>
+
+                <!-- Explanation Box (Hidden initially) -->
+                <div id="quiz-explanation-box" class="hidden p-4 rounded-xl border text-xs sm:text-sm leading-relaxed">
+                    <!-- Injected dynamically -->
+                </div>
+
+                <!-- Bottom Navigation Buttons -->
+                <div class="flex justify-between items-center pt-4 border-t border-slate-800">
+                    <button onclick="prevQuestion()" id="quiz-btn-prev" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl border border-slate-700 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-chevron-left mr-1"></i> Sebelumnya
+                    </button>
+                    <button onclick="nextQuestion()" id="quiz-btn-next" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl transition shadow-lg shadow-indigo-600/30">
+                        Selanjutnya <i class="fa-solid fa-chevron-right ml-1"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-6 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div>
+                Media Pembelajaran Informatika: <strong class="text-slate-400">Pseudocode Dasar & IPO</strong>
+            </div>
+            <div class="text-slate-600">
+                Dirancang untuk pemula dan siswa SMP/SMA
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global State
+        let currentTab = 'materi';
+
+        // Preset Data for Simulator
+        const presets = {
+            luas: {
+                title: "Menghitung Luas Persegi Panjang",
+                inputs: [
+                    { id: "panjang", label: "Panjang", type: "number", value: 10 },
+                    { id: "lebar", label: "Lebar", type: "number", value: 5 }
+                ],
+                lines: [
+                    { text: "START", type: "control" },
+                    { text: "INPUT panjang", type: "input", var: "panjang" },
+                    { text: "INPUT lebar", type: "input", var: "lebar" },
+                    { text: "luas ← panjang × lebar", type: "process", expr: "panjang * lebar", targetVar: "luas" },
+                    { text: "OUTPUT luas", type: "output", var: "luas" },
+                    { text: "END", type: "control" }
+                ],
+                python: `panjang = int(input("Masukkan panjang: "))\nlebar = int(input("Masukkan lebar: "))\nluas = panjang * lebar\nprint(luas)`
+            },
+            total: {
+                title: "Menghitung Total Harga Barang",
+                inputs: [
+                    { id: "harga", label: "Harga Barang (Rp)", type: "number", value: 10000 },
+                    { id: "jumlah", label: "Jumlah Beli", type: "number", value: 3 }
+                ],
+                lines: [
+                    { text: "START", type: "control" },
+                    { text: "INPUT harga", type: "input", var: "harga" },
+                    { text: "INPUT jumlah", type: "input", var: "jumlah" },
+                    { text: "total ← harga × jumlah", type: "process", expr: "harga * jumlah", targetVar: "total" },
+                    { text: "OUTPUT total", type: "output", var: "total" },
+                    { text: "END", type: "control" }
+                ],
+                python: `harga = int(input("Harga: "))\njumlah = int(input("Jumlah: "))\ntotal = harga * jumlah\nprint(total)`
+            },
+            kelulusan: {
+                title: "Menentukan Kelulusan (IF-ELSE)",
+                inputs: [
+                    { id: "nilai", label: "Nilai Ujian Siswa", type: "number", value: 80 }
+                ],
+                lines: [
+                    { text: "START", type: "control" },
+                    { text: "INPUT nilai", type: "input", var: "nilai" },
+                    { text: "IF nilai >= 75 THEN", type: "condition", conditionExpr: "nilai >= 75" },
+                    { text: "    OUTPUT \"Lulus\"", type: "output_str", val: "Lulus", branch: "then" },
+                    { text: "ELSE", type: "else_branch" },
+                    { text: "    OUTPUT \"Tidak Lulus\"", type: "output_str", val: "Tidak Lulus", branch: "else" },
+                    { text: "END IF", type: "control" },
+                    { text: "END", type: "control" }
+                ],
+                python: `nilai = int(input("Nilai: "))\nif nilai >= 75:\n    print("Lulus")\nelse:\n    print("Tidak Lulus")`
+            },
+            genapganjil: {
+                title: "Menentukan Bilangan Genap/Ganjil",
+                inputs: [
+                    { id: "bilangan", label: "Masukkan Bilangan", type: "number", value: 8 }
+                ],
+                lines: [
+                    { text: "START", type: "control" },
+                    { text: "INPUT bilangan", type: "input", var: "bilangan" },
+                    { text: "IF bilangan MOD 2 = 0 THEN", type: "condition", conditionExpr: "bilangan % 2 === 0" },
+                    { text: "    OUTPUT \"Genap\"", type: "output_str", val: "Genap", branch: "then" },
+                    { text: "ELSE", type: "else_branch" },
+                    { text: "    OUTPUT \"Ganjil\"", type: "output_str", val: "Ganjil", branch: "else" },
+                    { text: "END IF", type: "control" },
+                    { text: "END", type: "control" }
+                ],
+                python: `bilangan = int(input("Bilangan: "))\nif bilangan % 2 == 0:\n    print("Genap")\nelse:\n    print("Ganjil")`
+            }
+        };
+
+        // Simulator State
+        let currentPresetKey = 'luas';
+        let simCurrentLine = -1;
+        let simMemory = {};
+        let simOutputs = [];
+        let simInterval = null;
+        let simIsRunning = false;
+        let activeBranchChoice = null; // 'then' or 'else'
+
+        function switchTab(tabName) {
+            currentTab = tabName;
+            ['materi', 'simulator'].forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                const content = document.getElementById(`content-${t}`);
+                if (t === tabName) {
+                    btn.className = "nav-btn px-3 py-1.5 rounded-lg font-medium transition-all duration-200 bg-indigo-600 text-white shadow";
+                    content.classList.remove('hidden');
+                } else {
+                    btn.className = "nav-btn px-3 py-1.5 rounded-lg font-medium transition-all duration-200 text-slate-400 hover:text-white hover:bg-slate-700/50";
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        function loadPreset(key) {
+            currentPresetKey = key;
+            const preset = presets[key];
+
+            // Load Inputs
+            const inputContainer = document.getElementById('dynamic-input-container');
+            inputContainer.innerHTML = '';
+            preset.inputs.forEach(inp => {
+                const div = document.createElement('div');
+                div.className = 'space-y-1';
+                div.innerHTML = `
+                    <label class="block text-xs font-medium text-slate-300">${inp.label}:</label>
+                    <input type="${inp.type}" id="sim-input-${inp.id}" value="${inp.value}" 
+                        class="w-full bg-slate-950 text-white border border-slate-800 rounded-xl px-3 py-1.5 text-xs font-mono focus:outline-none focus:border-indigo-500">
+                `;
+                inputContainer.appendChild(div);
+            });
+
+            // Load Python Code
+            document.getElementById('python-equivalent-code').textContent = preset.python;
+
+            // Reset execution state
+            resetSimulation();
+        }
+
+        function renderCodeLines() {
+            const preset = presets[currentPresetKey];
+            const box = document.getElementById('code-lines-box');
+            box.innerHTML = '';
+
+            preset.lines.forEach((lineObj, idx) => {
+                const div = document.createElement('div');
+                div.id = `code-line-${idx}`;
+                div.className = 'py-1 px-3 rounded flex items-center justify-between text-slate-300 font-mono text-xs sm:text-sm transition-all duration-150';
+
+                // Highlighting line condition
+                if (idx === simCurrentLine) {
+                    div.classList.add('active-line', 'text-indigo-200', 'font-bold');
+                } else if (idx < simCurrentLine) {
+                    div.classList.add('text-slate-400');
+                }
+
+                // Keyword syntax styling
+                let highlightedText = lineObj.text
+                    .replace(/\b(START|END|INPUT|OUTPUT|IF|THEN|ELSE|END IF)\b/g, '<span class="text-pink-400 font-bold">$1</span>')
+                    .replace(/(←)/g, '<span class="text-amber-400 font-bold">$1</span>')
+                    .replace(/"([^"]+)"/g, '<span class="text-emerald-300">"$1"</span>');
+
+                div.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="w-6 text-slate-600 text-right text-xs font-normal">${idx + 1}</span>
+                        <span>${highlightedText}</span>
+                    </div>
+                    ${idx === simCurrentLine ? '<span class="text-xs text-indigo-400 font-sans animate-pulse"><i class="fa-solid fa-arrow-left"></i> Eksekusi</span>' : ''}
+                `;
+                box.appendChild(div);
+            });
+
+            document.getElementById('step-counter-text').textContent = `Baris ${simCurrentLine >= 0 ? simCurrentLine + 1 : 0} dari ${preset.lines.length}`;
+        }
+
+        function renderMemoryTable() {
+            const container = document.getElementById('memory-table-container');
+            const keys = Object.keys(simMemory);
+
+            if (keys.length === 0) {
+                container.innerHTML = `<div class="text-center py-4 italic text-slate-600">Variabel belum terisi</div>`;
+                return;
+            }
+
+            let html = '<div class="space-y-1.5">';
+            keys.forEach(k => {
+                html += `
+                    <div class="flex justify-between items-center bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+                        <span class="text-indigo-400 font-bold">${k}</span>
+                        <span class="text-emerald-300 font-semibold">${simMemory[k]}</span>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function renderConsoleOutput() {
+            const consoleBox = document.getElementById('console-output');
+            if (simOutputs.length === 0) {
+                consoleBox.innerHTML = `<span class="text-slate-600 italic">&gt; Tunggu eksekusi...</span>`;
+            } else {
+                consoleBox.innerHTML = simOutputs.map(out => `<div>&gt; ${out}</div>`).join('');
+            }
+        }
+
+        function stepSimulation() {
+            const preset = presets[currentPresetKey];
+
+            if (simCurrentLine >= preset.lines.length - 1) {
+                stopAutoRun();
+                document.getElementById('sim-status-badge').textContent = 'Selesai (Completed)';
+                document.getElementById('sim-status-badge').className = 'px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/30 font-mono text-xs';
+                return;
+            }
+
+            simCurrentLine++;
+            const line = preset.lines[simCurrentLine];
+            document.getElementById('sim-status-badge').textContent = 'Mengeksekusi...';
+            document.getElementById('sim-status-badge').className = 'px-2 py-0.5 rounded-full bg-indigo-950 text-indigo-300 border border-indigo-500/30 font-mono text-xs';
+
+            // Execute line logic
+            if (line.type === 'input') {
+                const inpElem = document.getElementById(`sim-input-${line.var}`);
+                if (inpElem) {
+                    const val = parseFloat(inpElem.value) || inpElem.value;
+                    simMemory[line.var] = val;
+                }
+            } else if (line.type === 'process') {
+                if (currentPresetKey === 'luas') {
+                    simMemory.luas = simMemory.panjang * simMemory.lebar;
+                } else if (currentPresetKey === 'total') {
+                    simMemory.total = simMemory.harga * simMemory.jumlah;
+                }
+            } else if (line.type === 'condition') {
+                let isTrue = false;
+                if (currentPresetKey === 'kelulusan') {
+                    isTrue = (simMemory.nilai >= 75);
+                } else if (currentPresetKey === 'genapganjil') {
+                    isTrue = (simMemory.bilangan % 2 === 0);
+                }
+                activeBranchChoice = isTrue ? 'then' : 'else';
+            } else if (line.type === 'output_str') {
+                // Skip if line doesn't match active branch choice
+                if (line.branch !== activeBranchChoice) {
+                    // Do nothing for skipped branch output
+                } else {
+                    simOutputs.push(line.val);
+                }
+            } else if (line.type === 'else_branch') {
+                // If we came from THEN branch, skip to END IF
+                if (activeBranchChoice === 'then') {
+                    // Skip next output_str
+                    simCurrentLine++;
+                }
+            } else if (line.type === 'output') {
+                if (line.var && simMemory[line.var] !== undefined) {
+                    simOutputs.push(`${line.var} = ${simMemory[line.var]}`);
+                }
+            }
+
+            renderCodeLines();
+            renderMemoryTable();
+            renderConsoleOutput();
+
+            if (simCurrentLine === preset.lines.length - 1) {
+                document.getElementById('sim-status-badge').textContent = 'Selesai (Completed)';
+                document.getElementById('sim-status-badge').className = 'px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/30 font-mono text-xs';
+                stopAutoRun();
+            }
+        }
+
+        function startSimulation() {
+            if (simIsRunning) return;
+            simIsRunning = true;
+            document.getElementById('btn-play').disabled = true;
+
+            if (simCurrentLine >= presets[currentPresetKey].lines.length - 1) {
+                resetSimulation();
+            }
+
+            simInterval = setInterval(() => {
+                stepSimulation();
+            }, 800);
+        }
+
+        function stopAutoRun() {
+            simIsRunning = false;
+            if (simInterval) clearInterval(simInterval);
+            document.getElementById('btn-play').disabled = false;
+        }
+
+        function resetSimulation() {
+            stopAutoRun();
+            simCurrentLine = -1;
+            simMemory = {};
+            simOutputs = [];
+            activeBranchChoice = null;
+
+            document.getElementById('sim-status-badge').textContent = 'Siap (Idle)';
+            document.getElementById('sim-status-badge').className = 'px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono text-xs';
+
+            renderCodeLines();
+            renderMemoryTable();
+            renderConsoleOutput();
+        }
+
+        window.onload = function() {
+            // Initialize Simulator with default preset
+            loadPreset('luas');
+        }
+    </script>
+</body>
+</html>
