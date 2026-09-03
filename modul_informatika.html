@@ -584,32 +584,62 @@ END</pre>
             </div>
 
             <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-                Mari kita gabungkan seluruh tahapan berpikir komputasional dari sebuah permasalahan di dunia nyata hingga menjadi diagram alir flowchart.
+                Mari kita pelajari alur lengkap pemecahan masalah secara terintegrasi—mulai dari analisis Computational Thinking (CT) & IPO, penulisan <strong>Algoritma Naratif</strong> (kalimat deskriptif), penyusunan <strong>Pseudocode</strong>, hingga pembuatan <strong>Flowchart</strong>.
             </p>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Tahap CT & IPO -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
-                    <h4 class="font-bold text-sky-600 dark:text-sky-400 text-base border-b border-slate-100 dark:border-slate-700 pb-2">
-                        1. Dekomposisi & IPO
-                    </h4>
-                    <div class="text-xs space-y-2 text-slate-600 dark:text-slate-300">
-                        <p><strong>Masalah:</strong> Kantin ingin membuat sistem untuk menghitung total pembayaran pelanggan.</p>
-                        <p class="bg-slate-50 dark:bg-slate-900 p-2.5 rounded-lg border border-slate-200 dark:border-slate-700">
-                            <strong>Input:</strong> harga, jumlah<br>
-                            <strong>Process:</strong> total = harga × jumlah<br>
-                            <strong>Output:</strong> total
-                        </p>
-                        <p><strong>Abstraksi:</strong> Abaikan nama pembeli, ukuran makanan, atau warna piring.</p>
+            <!-- 4 Grid Step Pipeline -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Tahap 1: CT & IPO -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-2 text-sky-600 dark:text-sky-400 font-bold text-sm mb-3 border-b border-slate-100 dark:border-slate-700 pb-2">
+                            <span class="w-6 h-6 rounded-full bg-sky-100 dark:bg-sky-900/60 flex items-center justify-center text-xs">1</span>
+                            <h4>Analisis CT & IPO</h4>
+                        </div>
+                        <div class="text-xs space-y-2.5 text-slate-600 dark:text-slate-300">
+                            <p><strong>Masalah:</strong> Menghitung total transaksi belanja pembeli di kantin sekolah.</p>
+                            <p><strong>Dekomposisi:</strong> Meminta data harga → Meminta jumlah barang → Mengalikan → Menampilkan total.</p>
+                            <p><strong>Abstraksi:</strong> Abaikan nama pembeli, merek makanan, atau warna piring.</p>
+                            <div class="bg-slate-50 dark:bg-slate-900 p-2.5 rounded-lg border border-slate-200 dark:border-slate-700 font-mono text-[11px] leading-tight">
+                                <span class="text-sky-600 dark:text-sky-400 font-semibold">Input:</span> harga, jumlah<br>
+                                <span class="text-indigo-600 dark:text-indigo-400 font-semibold">Process:</span> total = harga × jumlah<br>
+                                <span class="text-emerald-600 dark:text-emerald-400 font-semibold">Output:</span> total pembayaran
+                            </div>
+                        </div>
                     </div>
+                    <span class="mt-4 inline-block text-[11px] text-sky-600 dark:text-sky-400 font-medium">Tahap 1: Formulasi Ide</span>
                 </div>
 
-                <!-- Pseudocode -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
-                    <h4 class="font-bold text-sky-600 dark:text-sky-400 text-base border-b border-slate-100 dark:border-slate-700 pb-2">
-                        2. Pseudocode
-                    </h4>
-                    <pre class="bg-slate-900 text-sky-300 p-3.5 rounded-xl font-mono text-xs leading-relaxed">
+                <!-- Tahap 2: Algoritma Naratif / Deskriptif -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-2 text-amber-600 dark:text-amber-400 font-bold text-sm mb-3 border-b border-slate-100 dark:border-slate-700 pb-2">
+                            <span class="w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-900/60 flex items-center justify-center text-xs">2</span>
+                            <h4>Algoritma Naratif</h4>
+                        </div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Penulisan langkah sistematis dalam <i>bahasa sehari-hari (kalimat deskriptif)</i>:</p>
+                        <ol class="list-decimal list-inside text-xs space-y-1.5 text-slate-700 dark:text-slate-200 bg-amber-50/50 dark:bg-amber-950/20 p-3 rounded-xl border border-amber-200/50 dark:border-amber-900/30">
+                            <li><strong>Mulai</strong> proses transaksi kasir.</li>
+                            <li><strong>Masukkan</strong> harga satu unit barang.</li>
+                            <li><strong>Masukkan</strong> jumlah barang yang dibeli.</li>
+                            <li><strong>Hitung</strong> total bayar dengan mengalikan <i>harga</i> dengan <i>jumlah</i>.</li>
+                            <li><strong>Tampilkan</strong> hasil total pembayaran ke layar.</li>
+                            <li><strong>Selesai</strong>.</li>
+                        </ol>
+                    </div>
+                    <span class="mt-4 inline-block text-[11px] text-amber-600 dark:text-amber-400 font-medium">Tahap 2: Bahasa Sehari-hari</span>
+                </div>
+
+                <!-- Tahap 3: Pseudocode -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-2 text-indigo-600 dark:text-indigo-400 font-bold text-sm mb-3 border-b border-slate-100 dark:border-slate-700 pb-2">
+                            <span class="w-6 h-6 rounded-full bg-indigo-100 dark:bg-indigo-900/60 flex items-center justify-center text-xs">3</span>
+                            <h4>Pseudocode</h4>
+                        </div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Penulisan terstruktur menggunakan kata kunci terstandar:</p>
+                        <pre class="bg-slate-900 text-sky-300 p-3 rounded-xl font-mono text-[11px] leading-relaxed">
 START
     INPUT harga
     INPUT jumlah
@@ -618,43 +648,96 @@ START
 
     OUTPUT total
 END</pre>
+                    </div>
+                    <span class="mt-4 inline-block text-[11px] text-indigo-600 dark:text-indigo-400 font-medium">Tahap 3: Struktur Kode Semu</span>
                 </div>
 
-                <!-- Flowchart SVG Diagram -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col items-center">
-                    <h4 class="font-bold text-sky-600 dark:text-sky-400 text-base border-b border-slate-100 dark:border-slate-700 pb-2 w-full text-center">
-                        3. Flowchart
-                    </h4>
-                    <div class="py-2">
-                        <svg class="w-48 h-72" viewBox="0 0 200 300">
-                            <!-- Start -->
-                            <rect x="50" y="5" width="100" height="30" rx="15" class="fill-sky-100 dark:fill-sky-950 stroke-sky-600 dark:stroke-sky-400" stroke-width="2"/>
-                            <text x="100" y="24" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-xs">START</text>
-                            
-                            <line x1="100" y1="35" x2="100" y2="55" class="stroke-slate-400" stroke-width="2" marker-end="url(#arrow)"/>
-                            
-                            <!-- Input harga & jumlah -->
-                            <polygon points="30,55 180,55 160,85 10,85" class="fill-emerald-100 dark:fill-emerald-950 stroke-emerald-600 dark:stroke-emerald-400" stroke-width="2"/>
-                            <text x="95" y="74" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-[10px]">Input harga, jumlah</text>
-                            
-                            <line x1="100" y1="85" x2="100" y2="105" class="stroke-slate-400" stroke-width="2"/>
+                <!-- Tahap 4: Flowchart SVG -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col items-center justify-between">
+                    <div class="w-full">
+                        <div class="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 font-bold text-sm mb-3 border-b border-slate-100 dark:border-slate-700 pb-2 w-full">
+                            <span class="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/60 flex items-center justify-center text-xs">4</span>
+                            <h4>Flowchart Diagram</h4>
+                        </div>
+                        <div class="flex justify-center py-1">
+                            <svg class="w-44 h-64" viewBox="0 0 200 300">
+                                <!-- Start -->
+                                <rect x="50" y="5" width="100" height="28" rx="14" class="fill-sky-100 dark:fill-sky-950 stroke-sky-600 dark:stroke-sky-400" stroke-width="2"/>
+                                <text x="100" y="23" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-[11px]">START</text>
+                                
+                                <line x1="100" y1="33" x2="100" y2="52" class="stroke-slate-400 dark:stroke-slate-500" stroke-width="2"/>
+                                
+                                <!-- Input harga & jumlah -->
+                                <polygon points="30,52 180,52 160,82 10,82" class="fill-emerald-100 dark:fill-emerald-950 stroke-emerald-600 dark:stroke-emerald-400" stroke-width="2"/>
+                                <text x="95" y="71" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-[10px]">Input harga, jumlah</text>
+                                
+                                <line x1="100" y1="82" x2="100" y2="102" class="stroke-slate-400 dark:stroke-slate-500" stroke-width="2"/>
 
-                            <!-- Process total -->
-                            <rect x="20" y="105" width="160" height="35" rx="4" class="fill-indigo-100 dark:fill-indigo-950 stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2"/>
-                            <text x="100" y="126" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-[10px]">total = harga * jumlah</text>
+                                <!-- Process total -->
+                                <rect x="20" y="102" width="160" height="34" rx="4" class="fill-indigo-100 dark:fill-indigo-950 stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2"/>
+                                <text x="100" y="123" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-[10px]">total = harga * jumlah</text>
 
-                            <line x1="100" y1="140" x2="100" y2="160" class="stroke-slate-400" stroke-width="2"/>
+                                <line x1="100" y1="136" x2="100" y2="156" class="stroke-slate-400 dark:stroke-slate-500" stroke-width="2"/>
 
-                            <!-- Output total -->
-                            <polygon points="30,160 180,160 160,190 10,190" class="fill-emerald-100 dark:fill-emerald-950 stroke-emerald-600 dark:stroke-emerald-400" stroke-width="2"/>
-                            <text x="95" y="179" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-[10px]">Output total</text>
+                                <!-- Output total -->
+                                <polygon points="30,156 180,156 160,186 10,186" class="fill-emerald-100 dark:fill-emerald-950 stroke-emerald-600 dark:stroke-emerald-400" stroke-width="2"/>
+                                <text x="95" y="175" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-[10px]">Output total</text>
 
-                            <line x1="100" y1="190" x2="100" y2="210" class="stroke-slate-400" stroke-width="2"/>
+                                <line x1="100" y1="186" x2="100" y2="206" class="stroke-slate-400 dark:stroke-slate-500" stroke-width="2"/>
 
-                            <!-- End -->
-                            <rect x="50" y="210" width="100" height="30" rx="15" class="fill-sky-100 dark:fill-sky-950 stroke-sky-600 dark:stroke-sky-400" stroke-width="2"/>
-                            <text x="100" y="229" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-xs">END</text>
-                        </svg>
+                                <!-- End -->
+                                <rect x="50" y="206" width="100" height="28" rx="14" class="fill-sky-100 dark:fill-sky-950 stroke-sky-600 dark:stroke-sky-400" stroke-width="2"/>
+                                <text x="100" y="224" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-[11px]">END</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="mt-2 inline-block text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">Tahap 4: Representasi Visual</span>
+                </div>
+
+            </div>
+
+            <!-- Studi Kasus Tambahan: Percabangan Diskon Kantin -->
+            <div class="mt-8 bg-sky-50 dark:bg-slate-800/60 p-6 rounded-2xl border border-sky-200 dark:border-sky-800/50">
+                <h4 class="font-bold text-base text-sky-900 dark:text-sky-300 mb-3 flex items-center">
+                    <i class="fa-solid fa-tags text-amber-500 mr-2"></i>
+                    Pengembangan Studi Kasus: Menghitung Diskon Kantin (Percabangan / Selection)
+                </h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mb-4">
+                    Kantin memberikan diskon sebesar Rp 5.000 jika total belanja mencapai <strong>Rp 50.000 atau lebih</strong>.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <!-- Algoritma Naratif -->
+                    <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <span class="font-bold text-amber-600 dark:text-amber-400 block mb-2 flex items-center">
+                            <i class="fa-solid fa-align-left mr-1.5"></i> Algoritma Naratif (Kalimat Deskriptif)
+                        </span>
+                        <ol class="list-decimal list-inside space-y-1 text-slate-600 dark:text-slate-300">
+                            <li>Mulai transaksi.</li>
+                            <li>Masukkan total belanja awal.</li>
+                            <li>Periksa apakah total belanja ≥ 50.000.</li>
+                            <li>Jika <strong>YA</strong>, hitung bayar = total belanja - 5.000.</li>
+                            <li>Jika <strong>TIDAK</strong>, maka bayar = total belanja tanpa potongan.</li>
+                            <li>Tampilkan total bayar akhir.</li>
+                            <li>Selesai.</li>
+                        </ol>
+                    </div>
+
+                    <!-- Pseudocode -->
+                    <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <span class="font-bold text-indigo-600 dark:text-indigo-400 block mb-2 flex items-center">
+                            <i class="fa-solid fa-code mr-1.5"></i> Pseudocode (Selection)
+                        </span>
+                        <pre class="bg-slate-900 text-sky-300 p-3 rounded-lg font-mono text-[11px] leading-relaxed">
+START
+    INPUT total_belanja
+    IF total_belanja >= 50000 THEN
+        bayar ← total_belanja - 5000
+    ELSE
+        bayar ← total_belanja
+    END IF
+    OUTPUT bayar
+END</pre>
                     </div>
                 </div>
             </div>
