@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informatika X: Algoritma, Pseudocode & Flowchart</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glow {
+            box-shadow: 0 0 25px -5px rgba(14, 165, 233, 0.3);
+        }
+        .flowchart-node {
+            transition: all 0.3s ease;
+        }
+        .flowchart-node.active {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 8px rgba(14, 165, 233, 0.8));
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                        <i class="fa-solid fa-code-branch"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg leading-tight text-slate-900 dark:text-white">Informatika Kelas X</h1>
+                        <p class="text-xs text-sky-600 dark:text-sky-400 font-medium">Algoritma, Pseudocode & Flowchart</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-2 text-sm font-medium">
+                    <a href="#ct" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Berpikir Komputasional</a>
+                    <a href="#algoritma" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Algoritma & IPO</a>
+                    <a href="#pseudocode" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Pseudocode</a>
+                    <a href="#flowchart" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Flowchart</a>
+                    <a href="#studi-kasus" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Studi Kasus</a>
+                    <a href="#simulasi-interaktif" class="px-3 py-2 bg-sky-600 text-white hover:bg-sky-700 rounded-lg transition-colors shadow-sm">Simulator Interaktif</a>
+                </nav>
+
+                <!-- Controls: Dark Mode Toggle & Mobile Menu Btn -->
+                <div class="flex items-center space-x-2">
+                    <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Ubah Tema">
+                        <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-4 space-y-1">
+            <a href="#ct" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Berpikir Komputasional</a>
+            <a href="#algoritma" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Algoritma & IPO</a>
+            <a href="#pseudocode" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Pseudocode</a>
+            <a href="#flowchart" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Flowchart & Simbol</a>
+            <a href="#studi-kasus" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Studi Kasus Integrasi</a>
+            <a href="#simulasi-interaktif" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium bg-sky-600 text-white text-center">Simulator Interaktif</a>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-sky-500/10 via-slate-50/50 to-slate-50 dark:from-sky-950/30 dark:via-slate-900 dark:to-slate-900 py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-sky-100 dark:bg-sky-900/60 text-sky-800 dark:text-sky-300 mb-4 border border-sky-200 dark:border-sky-800">
+                <i class="fa-solid fa-graduation-cap mr-1.5"></i> Modul Pembelajaran Interaktif Kelas X
+            </span>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
+                Dari Logika Algoritma ke <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-indigo-600">Pseudocode & Flowchart</span>
+            </h2>
+            <p class="max-w-3xl mx-auto text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
+                Pelajari cara memecahkan masalah secara sistematis dengan Berpikir Komputasional, mendesain alur logika IPO, menulis pseudocode, dan merancang diagram alir (flowchart).
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#simulasi-interaktif" class="px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold shadow-lg shadow-sky-500/25 transition-all transform hover:-translate-y-0.5 flex items-center space-x-2">
+                    <i class="fa-solid fa-play"></i>
+                    <span>Coba Simulator Interaktif</span>
+                </a>
+                <a href="#simbol-flowchart" class="px-6 py-3 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold border border-slate-200 dark:border-slate-700 transition-all flex items-center space-x-2">
+                    <i class="fa-solid fa-shapes"></i>
+                    <span>Eksplorasi Simbol Flowchart</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow space-y-16">
+
+        <!-- SECTION 1: BERPIKIR KOMPUTASIONAL -->
+        <section id="ct" class="scroll-mt-20">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-8 h-8 rounded-lg bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">01</span>
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Berpikir Komputasional (Computational Thinking)</h3>
+            </div>
+            
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                <strong>Computational Thinking (CT)</strong> adalah landasan cara berpikir sistematis untuk memahami masalah dan merancang solusi yang dapat dilaksanakan oleh manusia maupun komputer. Terdapat 4 pilar utama:
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Card Dekomposisi -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-puzzle-piece"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Dekomposisi</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">Memecah masalah besar dan rumit menjadi bagian-bagian yang lebih kecil dan mudah dikelola.</p>
+                </div>
+
+                <!-- Card Pengenalan Pola -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-border-all"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Pengenalan Pola</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">Mencari kesamaan, kecenderungan, atau pola yang berulang dari masalah sejenis.</p>
+                </div>
+
+                <!-- Card Abstraksi -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-filter"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Abstraksi</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">Fokus hanya pada informasi penting dan mengabaikan detail irrelevant yang tidak dibutuhkan.</p>
+                </div>
+
+                <!-- Card Algoritma -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Algoritma</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">Menyusun langkah-langkah penyelesaian secara sistematis dan logis dari awal hingga akhir.</p>
+                </div>
+            </div>
+
+            <!-- Studi Kasus Sederhana CT -->
+            <div class="bg-sky-50 dark:bg-slate-800/60 rounded-2xl p-6 border border-sky-200 dark:border-sky-800/50">
+                <h4 class="font-bold text-lg text-sky-900 dark:text-sky-300 mb-3 flex items-center">
+                    <i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i>
+                    Contoh Penerapan CT: Penentuan Kelulusan Siswa
+                </h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <span class="font-semibold text-amber-600 dark:text-amber-400">Dekomposisi:</span>
+                        <p class="text-slate-600 dark:text-slate-300 mt-1">Mengetahui nilai siswa → Menentukan batas KKM → Membandingkan nilai → Menentukan status kelulusan.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <span class="font-semibold text-emerald-600 dark:text-emerald-400">Pengenalan Pola:</span>
+                        <p class="text-slate-600 dark:text-slate-300 mt-1">Setiap siswa punya nilai ujian. Jika Nilai ≥ Batas (75) → Lulus. Jika kurang → Tidak Lulus.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <span class="font-semibold text-purple-600 dark:text-purple-400">Abstraksi:</span>
+                        <p class="text-slate-600 dark:text-slate-300 mt-1">Abaikan warna baju, nomor sepatu, atau tempat tinggal. Cukup ambil data <strong>Nilai Ujian</strong> dan <strong>Batas Kelulusan</strong>.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <span class="font-semibold text-sky-600 dark:text-sky-400">Algoritma:</span>
+                        <p class="text-slate-600 dark:text-slate-300 mt-1">1. Masukkan Nilai; 2. Cek apakah Nilai ≥ 75; 3. Jika ya, cetak "Lulus"; 4. Jika tidak, cetak "Tidak Lulus".</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ALGORITMA & IPO -->
+        <section id="algoritma" class="scroll-mt-20">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-8 h-8 rounded-lg bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">02</span>
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Apa itu Algoritma & Konsep IPO?</h3>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <div class="lg:col-span-2 space-y-4">
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        <strong>Algoritma</strong> adalah urutan langkah logis dan sistematis untuk menyelesaikan suatu masalah atau mencapai tujuan tertentu. Algoritma dapat dituliskan dalam bahasa sehari-hari, pseudocode, maupun diagram flowchart.
+                    </p>
+                    
+                    <h4 class="font-bold text-slate-900 dark:text-white text-lg pt-2">5 Ciri Algoritma yang Baik:</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="flex items-start space-x-3 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                            <i class="fa-solid fa-circle-check text-sky-500 mt-1"></i>
+                            <div>
+                                <strong class="text-sm block text-slate-900 dark:text-white">1. Memiliki Input</strong>
+                                <span class="text-xs text-slate-500 dark:text-slate-400">Menerima nol atau lebih data masukan.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                            <i class="fa-solid fa-circle-check text-sky-500 mt-1"></i>
+                            <div>
+                                <strong class="text-sm block text-slate-900 dark:text-white">2. Memiliki Output</strong>
+                                <span class="text-xs text-slate-500 dark:text-slate-400">Menghasilkan minimal satu luaran/hasil.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                            <i class="fa-solid fa-circle-check text-sky-500 mt-1"></i>
+                            <div>
+                                <strong class="text-sm block text-slate-900 dark:text-white">3. Langkah Jelas (Definiteness)</strong>
+                                <span class="text-xs text-slate-500 dark:text-slate-400">Tidak menimbulkan arti ganda (ambigu).</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                            <i class="fa-solid fa-circle-check text-sky-500 mt-1"></i>
+                            <div>
+                                <strong class="text-sm block text-slate-900 dark:text-white">4. Ada Akhir (Finiteness)</strong>
+                                <span class="text-xs text-slate-500 dark:text-slate-400">Proses akan berhenti setelah sejumlah langkah.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 sm:col-span-2">
+                            <i class="fa-solid fa-circle-check text-sky-500 mt-1"></i>
+                            <div>
+                                <strong class="text-sm block text-slate-900 dark:text-white">5. Dapat Dilaksanakan (Effectiveness)</strong>
+                                <span class="text-xs text-slate-500 dark:text-slate-400">Setiap instruksi harus wajar dan nyata dapat dikerjakan.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IPO Model Visualization -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-6 rounded-2xl shadow-lg flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-sky-400 flex items-center">
+                            <i class="fa-solid fa-arrows-split-up-and-left mr-2"></i> Model IPO (Input-Process-Output)
+                        </h4>
+                        <p class="text-xs text-slate-300 mb-6">Prinsip dasar pengolahan data pada sistem komputer.</p>
+
+                        <div class="space-y-4 text-center">
+                            <div class="bg-slate-800/80 p-3 rounded-xl border border-sky-500/30">
+                                <span class="text-xs uppercase tracking-wider text-sky-400 font-semibold block">Input</span>
+                                <span class="text-sm font-medium">Panjang = 10, Lebar = 5</span>
+                            </div>
+                            <div class="text-sky-400 text-lg"><i class="fa-solid fa-arrow-down"></i></div>
+                            <div class="bg-slate-800/80 p-3 rounded-xl border border-indigo-500/30">
+                                <span class="text-xs uppercase tracking-wider text-indigo-400 font-semibold block">Process</span>
+                                <span class="text-sm font-medium">Luas = Panjang × Lebar</span>
+                            </div>
+                            <div class="text-sky-400 text-lg"><i class="fa-solid fa-arrow-down"></i></div>
+                            <div class="bg-slate-800/80 p-3 rounded-xl border border-emerald-500/30">
+                                <span class="text-xs uppercase tracking-wider text-emerald-400 font-semibold block">Output</span>
+                                <span class="text-sm font-medium">Luas = 50</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Perbandingan Algoritma vs Pseudocode vs Program -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm overflow-x-auto">
+                <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-4">Perbedaan Algoritma, Pseudocode, dan Program</h4>
+                <table class="w-full text-left text-sm">
+                    <thead>
+                        <tr class="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
+                            <th class="p-3 font-semibold text-slate-700 dark:text-slate-300">Kriteria</th>
+                            <th class="p-3 font-semibold text-slate-700 dark:text-slate-300">Algoritma (Naratif)</th>
+                            <th class="p-3 font-semibold text-sky-600 dark:text-sky-400">Pseudocode</th>
+                            <th class="p-3 font-semibold text-slate-700 dark:text-slate-300">Program Komputer</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 dark:divide-slate-700/50">
+                        <tr>
+                            <td class="p-3 font-medium">Bentuk Utama</td>
+                            <td class="p-3 text-slate-600 dark:text-slate-300">Ide / Langkah Kalimat Deskriptif</td>
+                            <td class="p-3 text-sky-600 dark:text-sky-300 font-semibold">Teks Menyerupai Kode Program</td>
+                            <td class="p-3 text-slate-600 dark:text-slate-300">Implementasi Kode Bahasa Pemrograman</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-medium">Keterikatan Bahasa</td>
+                            <td class="p-3 text-slate-600 dark:text-slate-300">Bahasa Sehari-hari (B. Indonesia)</td>
+                            <td class="p-3 text-slate-600 dark:text-slate-300">Bebas, Standar Kata Kunci (Keyword)</td>
+                            <td class="p-3 text-slate-600 dark:text-slate-300">Ketat Aturan Sintaks (C++, Python, Java)</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-medium">Eksekusi Komputer</td>
+                            <td class="p-3 text-slate-600 dark:text-slate-300">Tidak Dapat Dijalankan</td>
+                            <td class="p-3 text-slate-600 dark:text-slate-300">Belum Bisa Langsung Dijalankan</td>
+                            <td class="p-3 text-slate-600 dark:text-slate-300">Dapat Dijalankan Komputer</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-medium">Contoh Penulisan</td>
+                            <td class="p-3 text-slate-600 dark:text-slate-300">"Hitung luas dengan mengalikan panjang dan lebar."</td>
+                            <td class="p-3 font-mono text-xs bg-slate-100 dark:bg-slate-900 p-2 rounded text-sky-600 dark:text-sky-400">luas ← panjang * lebar</td>
+                            <td class="p-3 font-mono text-xs bg-slate-100 dark:bg-slate-900 p-2 rounded text-emerald-600 dark:text-emerald-400">luas = panjang * lebar;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PSEUDOCODE -->
+        <section id="pseudocode" class="scroll-mt-20">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-8 h-8 rounded-lg bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">03</span>
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Mengenal Pseudocode & Kata Kunci Utama</h3>
+            </div>
+
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                <strong>Pseudocode</strong> (semu / kode semu) berfungsi sebagai jembatan antara logika pemikiran manusia dan kode pemrograman sebenarnya.
+            </p>
+
+            <!-- Grid Kata Kunci Pseudocode -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+                    <span class="font-mono font-bold text-sky-600 dark:text-sky-400 block text-lg">START / END</span>
+                    <span class="text-xs text-slate-500">Awal & Akhir</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+                    <span class="font-mono font-bold text-sky-600 dark:text-sky-400 block text-lg">INPUT / READ</span>
+                    <span class="text-xs text-slate-500">Menerima Data</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+                    <span class="font-mono font-bold text-sky-600 dark:text-sky-400 block text-lg">OUTPUT / PRINT</span>
+                    <span class="text-xs text-slate-500">Menampilkan Hasil</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+                    <span class="font-mono font-bold text-sky-600 dark:text-sky-400 block text-lg">← (Penugasan)</span>
+                    <span class="text-xs text-slate-500">Simpan nilai variabel</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+                    <span class="font-mono font-bold text-sky-600 dark:text-sky-400 block text-lg">IF - ELSE</span>
+                    <span class="text-xs text-slate-500">Percabangan Kondisi</span>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
+                    <span class="font-mono font-bold text-sky-600 dark:text-sky-400 block text-lg">FOR / WHILE</span>
+                    <span class="text-xs text-slate-500">Perulangan (Looping)</span>
+                </div>
+            </div>
+
+            <!-- Tabs Struktur Algoritma (Sequence, Selection, Looping) -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+                <div class="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 p-2 flex space-x-2">
+                    <button onclick="switchTab('seq')" id="tab-seq" class="px-4 py-2 text-sm font-semibold rounded-lg bg-sky-600 text-white transition-colors">1. Sequence (Urutan)</button>
+                    <button onclick="switchTab('sel')" id="tab-sel" class="px-4 py-2 text-sm font-semibold rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">2. Selection (Percabangan)</button>
+                    <button onclick="switchTab('loop')" id="tab-loop" class="px-4 py-2 text-sm font-semibold rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">3. Looping (Perulangan)</button>
+                </div>
+
+                <!-- Tab Content Sequence -->
+                <div id="content-seq" class="p-6">
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Sequence (Struktur Runtutan)</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Instruksi dijalankan berurutan baris demi baris dari atas ke bawah tanpa lompatan.</p>
+                    <pre class="bg-slate-900 text-sky-300 p-4 rounded-xl font-mono text-sm leading-relaxed overflow-x-auto">
+START
+    INPUT panjang
+    INPUT lebar
+    luas ← panjang * lebar
+    OUTPUT luas
+END</pre>
+                </div>
+
+                <!-- Tab Content Selection -->
+                <div id="content-sel" class="p-6 hidden">
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Selection (Struktur Percabangan / Decision)</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Memilih jalur tindakan berdasarkan kondisi BENAR (True) atau SALAH (False).</p>
+                    <pre class="bg-slate-900 text-sky-300 p-4 rounded-xl font-mono text-sm leading-relaxed overflow-x-auto">
+START
+    INPUT nilai
+    IF nilai >= 75 THEN
+        OUTPUT "Lulus"
+    ELSE
+        OUTPUT "Tidak Lulus"
+    END IF
+END</pre>
+                </div>
+
+                <!-- Tab Content Looping -->
+                <div id="content-loop" class="p-6 hidden">
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Looping (Struktur Perulangan)</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Mengeksekusi blok perintah berulang kali selama kondisi tertentu terpenuhi.</p>
+                    <pre class="bg-slate-900 text-sky-300 p-4 rounded-xl font-mono text-sm leading-relaxed overflow-x-auto">
+START
+    FOR i ← 1 TO 5 DO
+        OUTPUT i
+    END FOR
+END</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: FLOWCHART & SIMBOL -->
+        <section id="flowchart" class="scroll-mt-20">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-8 h-8 rounded-lg bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">04</span>
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Simbol-Simbol Dasar Flowchart</h3>
+            </div>
+
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                <strong>Flowchart</strong> adalah penggambaran visual logika algoritma menggunakan diagram simbol standar yang dihubungkan oleh panah alur (flowline).
+            </p>
+
+            <!-- Flowchart Symbols Interactive Showcase -->
+            <div id="simbol-flowchart" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+                <!-- Simbol Terminal -->
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center shadow-sm hover:border-sky-500 transition-colors">
+                    <div class="w-full h-24 flex items-center justify-center mb-2">
+                        <svg class="w-36 h-14" viewBox="0 0 160 60">
+                            <rect x="5" y="10" width="150" height="40" rx="20" ry="20" class="fill-sky-100 dark:fill-sky-950 stroke-sky-600 dark:stroke-sky-400" stroke-width="2.5" />
+                            <text x="80" y="35" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-xs">START / END</text>
+                        </svg>
+                    </div>
+                    <h5 class="font-bold text-slate-900 dark:text-white text-base">Terminal</h5>
+                    <span class="text-xs text-sky-600 dark:text-sky-400 font-semibold mb-1">Bentuk: Oval</span>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Menandai awal (Start) atau akhir (End) dari suatu algoritma.</p>
+                </div>
+
+                <!-- Simbol Input / Output -->
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center shadow-sm hover:border-sky-500 transition-colors">
+                    <div class="w-full h-24 flex items-center justify-center mb-2">
+                        <svg class="w-36 h-14" viewBox="0 0 160 60">
+                            <polygon points="25,10 155,10 135,50 5,50" class="fill-emerald-100 dark:fill-emerald-950 stroke-emerald-600 dark:stroke-emerald-400" stroke-width="2.5" />
+                            <text x="80" y="35" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-xs">INPUT / OUTPUT</text>
+                        </svg>
+                    </div>
+                    <h5 class="font-bold text-slate-900 dark:text-white text-base">Input / Output</h5>
+                    <span class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mb-1">Bentuk: Jajar Genjang</span>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Menerima masukan data atau menampilkan hasil/keluaran.</p>
+                </div>
+
+                <!-- Simbol Process -->
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center shadow-sm hover:border-sky-500 transition-colors">
+                    <div class="w-full h-24 flex items-center justify-center mb-2">
+                        <svg class="w-36 h-14" viewBox="0 0 160 60">
+                            <rect x="10" y="10" width="140" height="40" rx="4" class="fill-indigo-100 dark:fill-indigo-950 stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5" />
+                            <text x="80" y="35" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-xs">PROSES / HITUNG</text>
+                        </svg>
+                    </div>
+                    <h5 class="font-bold text-slate-900 dark:text-white text-base">Process</h5>
+                    <span class="text-xs text-indigo-600 dark:text-indigo-400 font-semibold mb-1">Bentuk: Persegi Panjang</span>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Menyatakan operasi aritmatika atau pengolahan data.</p>
+                </div>
+
+                <!-- Simbol Decision -->
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center shadow-sm hover:border-sky-500 transition-colors">
+                    <div class="w-full h-24 flex items-center justify-center mb-2">
+                        <svg class="w-36 h-14" viewBox="0 0 160 60">
+                            <polygon points="80,5 155,30 80,55 5,30" class="fill-amber-100 dark:fill-amber-950 stroke-amber-600 dark:stroke-amber-400" stroke-width="2.5" />
+                            <text x="80" y="34" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-[10px]">KONDISI ?</text>
+                        </svg>
+                    </div>
+                    <h5 class="font-bold text-slate-900 dark:text-white text-base">Decision</h5>
+                    <span class="text-xs text-amber-600 dark:text-amber-400 font-semibold mb-1">Bentuk: Belah Ketupat</span>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Pengambilan keputusan dengan opsi Ya/Tidak (True/False).</p>
+                </div>
+
+                <!-- Simbol Flowline -->
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center shadow-sm hover:border-sky-500 transition-colors">
+                    <div class="w-full h-24 flex items-center justify-center mb-2">
+                        <svg class="w-36 h-14" viewBox="0 0 160 60">
+                            <line x1="20" y1="30" x2="130" y2="30" class="stroke-purple-600 dark:stroke-purple-400" stroke-width="3" />
+                            <polygon points="140,30 125,23 125,37" class="fill-purple-600 dark:fill-purple-400" />
+                        </svg>
+                    </div>
+                    <h5 class="font-bold text-slate-900 dark:text-white text-base">Flowline</h5>
+                    <span class="text-xs text-purple-600 dark:text-purple-400 font-semibold mb-1">Bentuk: Garis Panah</span>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Menunjukkan arah aliran langkah demi langkah.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: SIMULATOR INTERAKTIF EXECUTOR -->
+        <section id="simulasi-interaktif" class="scroll-mt-20">
+            <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-700">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-300 border border-sky-500/30">
+                            <i class="fa-solid fa-flask mr-1"></i> Interactive Visual Simulator
+                        </span>
+                        <h3 class="text-2xl font-bold mt-2">Simulator Eksekusi Algoritma & Flowchart</h3>
+                        <p class="text-xs text-slate-400">Masukkan nilai input lalu klik "Jalankan Step-by-Step" untuk melihat eksekusi dinamis.</p>
+                    </div>
+
+                    <!-- Simulator Mode Switcher -->
+                    <div class="flex items-center space-x-2 bg-slate-800/80 p-1.5 rounded-xl border border-slate-700 text-xs">
+                        <button onclick="setSimMode('luas')" id="sim-btn-luas" class="px-3 py-1.5 rounded-lg bg-sky-600 text-white font-semibold transition-colors">1. Luas Persegi Panjang</button>
+                        <button onclick="setSimMode('kkm')" id="sim-btn-kkm" class="px-3 py-1.5 rounded-lg hover:bg-slate-700 text-slate-300 font-semibold transition-colors">2. Kelulusan KKM</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Controls & Input Panel -->
+                    <div class="lg:col-span-4 bg-slate-800/60 p-5 rounded-2xl border border-slate-700/80 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-sky-400 text-sm mb-4 border-b border-slate-700 pb-2">Panel Input Data</h4>
+                            
+                            <!-- Input Form 1: Luas -->
+                            <div id="input-group-luas" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1">Panjang:</label>
+                                    <input type="number" id="sim-panjang" value="12" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1">Lebar:</label>
+                                    <input type="number" id="sim-lebar" value="5" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500">
+                                </div>
+                            </div>
+
+                            <!-- Input Form 2: KKM -->
+                            <div id="input-group-kkm" class="space-y-4 hidden">
+                                <div>
+                                    <label class="block text-xs font-medium text-slate-300 mb-1">Nilai Ujian Siswa:</label>
+                                    <input type="number" id="sim-nilai" value="80" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500">
+                                </div>
+                                <div class="text-xs text-slate-400 bg-slate-900/50 p-2.5 rounded-lg border border-slate-800">
+                                    <i class="fa-solid fa-info-circle text-sky-400 mr-1"></i> Batas kelulusan (KKM) ditetapkan = <strong>75</strong>.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="pt-6 space-y-2">
+                            <button onclick="runStepByStep()" class="w-full py-2.5 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-sm">
+                                <i class="fa-solid fa-forward-step"></i>
+                                <span>Langkah Selanjutnya (Next Step)</span>
+                            </button>
+                            <button onclick="resetSimulator()" class="w-full py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-semibold rounded-xl text-xs transition-colors flex items-center justify-center space-x-1">
+                                <i class="fa-solid fa-rotate-right"></i>
+                                <span>Reset Jalur</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Flowchart Interactive Render Display -->
+                    <div class="lg:col-span-8 bg-slate-950 p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-center min-h-[360px] relative overflow-hidden">
+                        
+                        <!-- Console Output Status Box -->
+                        <div class="absolute top-3 left-3 right-3 bg-slate-900/90 border border-slate-800 p-2.5 rounded-xl text-xs font-mono text-sky-300 flex justify-between items-center">
+                            <span>Status: <span id="sim-status-text" class="text-white font-bold">Siap. Klik "Langkah Selanjutnya".</span></span>
+                            <span id="sim-step-badge" class="bg-sky-900 text-sky-200 px-2 py-0.5 rounded text-[10px]">Step: 0 / 5</span>
+                        </div>
+
+                        <!-- Dynamic Flowchart Canvas Render -->
+                        <div id="sim-flowchart-container" class="mt-8 w-full flex flex-col items-center space-y-3">
+                            <!-- Flowchart nodes generated via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: STUDI KASUS INTEGRASI (KANTIN) -->
+        <section id="studi-kasus" class="scroll-mt-20">
+            <div class="flex items-center space-x-3 mb-6">
+                <span class="w-8 h-8 rounded-lg bg-sky-100 dark:bg-sky-900/50 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">05</span>
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Studi Kasus Terintegrasi: Kasir Kantin Sekolah</h3>
+            </div>
+
+            <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                Mari kita gabungkan seluruh tahapan berpikir komputasional dari sebuah permasalahan di dunia nyata hingga menjadi diagram alir flowchart.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Tahap CT & IPO -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                    <h4 class="font-bold text-sky-600 dark:text-sky-400 text-base border-b border-slate-100 dark:border-slate-700 pb-2">
+                        1. Dekomposisi & IPO
+                    </h4>
+                    <div class="text-xs space-y-2 text-slate-600 dark:text-slate-300">
+                        <p><strong>Masalah:</strong> Kantin ingin membuat sistem untuk menghitung total pembayaran pelanggan.</p>
+                        <p class="bg-slate-50 dark:bg-slate-900 p-2.5 rounded-lg border border-slate-200 dark:border-slate-700">
+                            <strong>Input:</strong> harga, jumlah<br>
+                            <strong>Process:</strong> total = harga × jumlah<br>
+                            <strong>Output:</strong> total
+                        </p>
+                        <p><strong>Abstraksi:</strong> Abaikan nama pembeli, ukuran makanan, atau warna piring.</p>
+                    </div>
+                </div>
+
+                <!-- Pseudocode -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                    <h4 class="font-bold text-sky-600 dark:text-sky-400 text-base border-b border-slate-100 dark:border-slate-700 pb-2">
+                        2. Pseudocode
+                    </h4>
+                    <pre class="bg-slate-900 text-sky-300 p-3.5 rounded-xl font-mono text-xs leading-relaxed">
+START
+    INPUT harga
+    INPUT jumlah
+
+    total ← harga * jumlah
+
+    OUTPUT total
+END</pre>
+                </div>
+
+                <!-- Flowchart SVG Diagram -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col items-center">
+                    <h4 class="font-bold text-sky-600 dark:text-sky-400 text-base border-b border-slate-100 dark:border-slate-700 pb-2 w-full text-center">
+                        3. Flowchart
+                    </h4>
+                    <div class="py-2">
+                        <svg class="w-48 h-72" viewBox="0 0 200 300">
+                            <!-- Start -->
+                            <rect x="50" y="5" width="100" height="30" rx="15" class="fill-sky-100 dark:fill-sky-950 stroke-sky-600 dark:stroke-sky-400" stroke-width="2"/>
+                            <text x="100" y="24" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-xs">START</text>
+                            
+                            <line x1="100" y1="35" x2="100" y2="55" class="stroke-slate-400" stroke-width="2" marker-end="url(#arrow)"/>
+                            
+                            <!-- Input harga & jumlah -->
+                            <polygon points="30,55 180,55 160,85 10,85" class="fill-emerald-100 dark:fill-emerald-950 stroke-emerald-600 dark:stroke-emerald-400" stroke-width="2"/>
+                            <text x="95" y="74" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-[10px]">Input harga, jumlah</text>
+                            
+                            <line x1="100" y1="85" x2="100" y2="105" class="stroke-slate-400" stroke-width="2"/>
+
+                            <!-- Process total -->
+                            <rect x="20" y="105" width="160" height="35" rx="4" class="fill-indigo-100 dark:fill-indigo-950 stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2"/>
+                            <text x="100" y="126" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-[10px]">total = harga * jumlah</text>
+
+                            <line x1="100" y1="140" x2="100" y2="160" class="stroke-slate-400" stroke-width="2"/>
+
+                            <!-- Output total -->
+                            <polygon points="30,160 180,160 160,190 10,190" class="fill-emerald-100 dark:fill-emerald-950 stroke-emerald-600 dark:stroke-emerald-400" stroke-width="2"/>
+                            <text x="95" y="179" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-[10px]">Output total</text>
+
+                            <line x1="100" y1="190" x2="100" y2="210" class="stroke-slate-400" stroke-width="2"/>
+
+                            <!-- End -->
+                            <rect x="50" y="210" width="100" height="30" rx="15" class="fill-sky-100 dark:fill-sky-950 stroke-sky-600 dark:stroke-sky-400" stroke-width="2"/>
+                            <text x="100" y="229" text-anchor="middle" class="fill-slate-800 dark:fill-slate-100 font-bold text-xs">END</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: KESALAHAN UMUM -->
+        <section class="scroll-mt-20">
+            <div class="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50 rounded-2xl p-6">
+                <h4 class="font-bold text-lg text-amber-900 dark:text-amber-300 mb-4 flex items-center">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-500 mr-2"></i>
+                    Kesalahan yang Sering Terjadi pada Siswa Kelas X
+                </h4>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                        <strong class="text-rose-600 dark:text-rose-400 block mb-1">1. Menganggap Pseudocode Adalah Kode Bahasa Pemrograman</strong>
+                        <p class="text-slate-600 dark:text-slate-300 text-xs">Pseudocode tidak bisa langsung dieksekusi oleh komputer (seperti Python/Java). Pseudocode ditulis untuk dibaca manusia sebagai rancangan.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                        <strong class="text-rose-600 dark:text-rose-400 block mb-1">2. Menukar Input dan Output</strong>
+                        <p class="text-slate-600 dark:text-slate-300 text-xs">Misalnya: Menganggap <code>luas = panjang * lebar</code> sebagai Input, padahal <code>luas</code> adalah Output dan <code>panjang, lebar</code> adalah Input.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                        <strong class="text-rose-600 dark:text-rose-400 block mb-1">3. Lupa Menambahkan Panah Alur (Flowline)</strong>
+                        <p class="text-slate-600 dark:text-slate-300 text-xs">Setiap simbol dalam flowchart wajib dihubungkan oleh panah penunjuk arah dari Start sampai ke End.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                        <strong class="text-rose-600 dark:text-rose-400 block mb-1">4. Simbol Decision Tanpa 2 Cabang Keputusan</strong>
+                        <p class="text-slate-600 dark:text-slate-300 text-xs">Simbol belah ketupat (Decision) wajib memiliki minimal dua jalur cabang berlabel YA/TIDAK (True/False).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-16 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 dark:text-slate-400 space-y-2">
+            <p>Modul Pembelajaran Interaktif Informatika Kelas X — Materi Algoritma, Pseudocode & Flowchart</p>
+            <p>Didesain untuk Pembelajaran Siswa SMA/SMK Sesuai Kurikulum Merdeka.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                html.classList.add('dark');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Tabs Logic for Pseudocode Structures
+        function switchTab(tab) {
+            ['seq', 'sel', 'loop'].forEach(t => {
+                document.getElementById(`content-${t}`).classList.add('hidden');
+                document.getElementById(`tab-${t}`).className = 'px-4 py-2 text-sm font-semibold rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors';
+            });
+
+            document.getElementById(`content-${tab}`).classList.remove('hidden');
+            document.getElementById(`tab-${tab}`).className = 'px-4 py-2 text-sm font-semibold rounded-lg bg-sky-600 text-white transition-colors';
+        }
+
+        // =========================================================
+        // SIMULATOR LOGIC
+        // =========================================================
+        let currentSimMode = 'luas';
+        let currentStep = 0;
+
+        const simData = {
+            luas: {
+                steps: [
+                    { label: "START", type: "terminal", desc: "Mulai Algoritma Luas Persegi Panjang." },
+                    { label: "INPUT panjang, lebar", type: "io", desc: "Menerima Nilai Panjang & Lebar dari Form." },
+                    { label: "luas ← panjang * lebar", type: "process", desc: "Menghitung Perkalian: Luas = Panjang × Lebar." },
+                    { label: "OUTPUT luas", type: "io", desc: "Menampilkan Hasil Perhitungan Luas." },
+                    { label: "END", type: "terminal", desc: "Selesai Eksekusi." }
+                ]
+            },
+            kkm: {
+                steps: [
+                    { label: "START", type: "terminal", desc: "Mulai Algoritma Penentuan KKM." },
+                    { label: "INPUT nilai", type: "io", desc: "Menerima Nilai Ujian Siswa." },
+                    { label: "nilai >= 75 ?", type: "decision", desc: "Memeriksa Apakah Nilai Memenuhi KKM (≥ 75)." },
+                    { label: "OUTPUT 'Lulus' / 'Tidak Lulus'", type: "io", desc: "Menampilkan Status Berdasarkan Hasil Percabangan." },
+                    { label: "END", type: "terminal", desc: "Selesai Eksekusi." }
+                ]
+            }
+        };
+
+        function setSimMode(mode) {
+            currentSimMode = mode;
+            currentStep = 0;
+
+            document.getElementById('sim-btn-luas').className = mode === 'luas' ? 'px-3 py-1.5 rounded-lg bg-sky-600 text-white font-semibold transition-colors' : 'px-3 py-1.5 rounded-lg hover:bg-slate-700 text-slate-300 font-semibold transition-colors';
+            document.getElementById('sim-btn-kkm').className = mode === 'kkm' ? 'px-3 py-1.5 rounded-lg bg-sky-600 text-white font-semibold transition-colors' : 'px-3 py-1.5 rounded-lg hover:bg-slate-700 text-slate-300 font-semibold transition-colors';
+
+            document.getElementById('input-group-luas').classList.toggle('hidden', mode !== 'luas');
+            document.getElementById('input-group-kkm').classList.toggle('hidden', mode !== 'kkm');
+
+            renderSimulator();
+        }
+
+        function renderSimulator() {
+            const container = document.getElementById('sim-flowchart-container');
+            container.innerHTML = '';
+            const steps = simData[currentSimMode].steps;
+
+            steps.forEach((step, index) => {
+                const isActive = index === currentStep - 1;
+                const isPassed = index < currentStep - 1;
+
+                let nodeHtml = '';
+                let activeStyle = isActive ? 'border-2 border-sky-400 bg-sky-900/40 text-white scale-105 shadow-lg shadow-sky-500/30' : (isPassed ? 'border border-emerald-500/40 bg-slate-900/80 text-slate-400' : 'border border-slate-800 bg-slate-900/40 text-slate-500');
+
+                let contentLabel = step.label;
+                if (isActive) {
+                    if (currentSimMode === 'luas') {
+                        const p = document.getElementById('sim-panjang').value || 0;
+                        const l = document.getElementById('sim-lebar').value || 0;
+                        if (index === 1) contentLabel = `INPUT panjang=${p}, lebar=${l}`;
+                        if (index === 2) contentLabel = `luas ← ${p} * ${l} = ${p * l}`;
+                        if (index === 3) contentLabel = `OUTPUT luas = ${p * l}`;
+                    } else if (currentSimMode === 'kkm') {
+                        const n = parseFloat(document.getElementById('sim-nilai').value || 0);
+                        if (index === 1) contentLabel = `INPUT nilai = ${n}`;
+                        if (index === 2) contentLabel = `Apakah ${n} >= 75 ? (${n >= 75 ? 'YA' : 'TIDAK'})`;
+                        if (index === 3) contentLabel = `OUTPUT "${n >= 75 ? 'Lulus' : 'Tidak Lulus'}"`;
+                    }
+                }
+
+                nodeHtml = `<div class="flowchart-node w-64 p-2.5 rounded-xl text-center font-mono text-xs ${activeStyle} transition-all duration-300">
+                    ${contentLabel}
+                </div>`;
+
+                container.innerHTML += nodeHtml;
+
+                if (index < steps.length - 1) {
+                    container.innerHTML += `<div class="text-slate-600 text-xs my-0.5"><i class="fa-solid fa-arrow-down"></i></div>`;
+                }
+            });
+
+            // Update Status Bar
+            const statusText = document.getElementById('sim-status-text');
+            const stepBadge = document.getElementById('sim-step-badge');
+            
+            stepBadge.innerText = `Step: ${currentStep} / ${steps.length}`;
+
+            if (currentStep === 0) {
+                statusText.innerText = 'Siap. Klik "Langkah Selanjutnya".';
+            } else if (currentStep <= steps.length) {
+                statusText.innerText = steps[currentStep - 1].desc;
+            } else {
+                statusText.innerText = 'Eksekusi Selesai!';
+            }
+        }
+
+        function runStepByStep() {
+            const steps = simData[currentSimMode].steps;
+            if (currentStep < steps.length) {
+                currentStep++;
+            } else {
+                currentStep = 1; // Reset loop back
+            }
+            renderSimulator();
+        }
+
+        function resetSimulator() {
+            currentStep = 0;
+            renderSimulator();
+        }
+
+        // On Window Load
+        window.onload = function() {
+            renderSimulator();
+        };
+    </script>
+</body>
+</html>
