@@ -4,8 +4,418 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Komputer & Jaringan - Informatika X</title>
-    <link rel="stylesheet" type="text/css" href="css/all.css">
-    <link rel="stylesheet" type="text/css" href="css/siskom.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #06b6d4;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --radius: 16px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: var(--card-bg);
+            padding: 20px 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-back {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: #eff6ff;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .btn-back:hover {
+            background: var(--primary);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Navigasi Grid Menu */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            padding: 22px 18px;
+            border-radius: var(--radius);
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px -10px rgba(37, 99, 235, 0.15);
+        }
+
+        .menu-card.active {
+            border-color: var(--primary);
+            background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
+            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.2);
+        }
+
+        .menu-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .menu-card h3 {
+            font-size: 1.15rem;
+            color: var(--secondary);
+            margin-bottom: 6px;
+        }
+
+        .menu-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Section Konten Tab */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-section > h2 {
+            font-size: 1.6rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+        }
+
+        .category-block {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--radius);
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .category-block h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-block > p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        /* Item Grid & Card */
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .item-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-card:hover {
+            background: #ffffff;
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 140px;
+            background: #ffffff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            overflow: hidden;
+            border: 1px solid #f1f5f9;
+        }
+
+        .img-container img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        .item-card h4 {
+            font-size: 1.05rem;
+            color: var(--secondary);
+            margin-bottom: 6px;
+        }
+
+        .item-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .tag-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 6px;
+            background: #e0f2fe;
+            color: #0369a1;
+            margin-bottom: 8px;
+            width: fit-content;
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Interactive Lab Game */
+        .game-container {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin-top: 30px;
+        }
+
+        .drag-part {
+            background: linear-gradient(135deg, #0284c7, #1e40af);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: grab;
+            font-weight: 600;
+            text-align: center;
+            user-select: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .drag-part:active {
+            cursor: grabbing;
+            transform: scale(0.98);
+        }
+
+        .drag-part.placed {
+            background: #10b981 !important;
+            cursor: default;
+            opacity: 0.8;
+        }
+
+        .target-slot {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed #64748b;
+            padding: 16px;
+            border-radius: 8px;
+            width: 100%;
+            text-align: center;
+            font-weight: 500;
+            color: #94a3b8;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .target-slot.hovered {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .target-slot.filled {
+            border-style: solid;
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            font-weight: 600;
+        }
+
+        .btn-game {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-game:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Referensi & Footer */
+        .section-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .source-list {
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .source-list li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0 10px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Quiz Widget Brainware */
+        .quiz-option {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .quiz-option:hover {
+            background: #e2e8f0;
+        }
+
+        .quiz-option.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #15803d;
+        }
+
+        .quiz-option.wrong {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #b91c1c;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -15,170 +425,571 @@
             <h1>Sistem Komputer & Jaringan</h1>
         </header>
 
+        <!-- Navigasi Utama 4 Pilar -->
         <section class="menu-grid">
             <div class="menu-card active" onclick="switchTab('hardware', this)">
                 <div class="icon">🔌</div>
                 <h3>Hardware</h3>
-                <p>Komponen fisik komputer penunjang pemrosesan sistem.</p>
+                <p>Komponen fisik penunjang proses masukan, olah, simpan & keluaran.</p>
             </div>
             <div class="menu-card" onclick="switchTab('software', this)">
                 <div class="icon">💿</div>
                 <h3>Software</h3>
-                <p>Perangkat lunak pengendali instruksi logika hardware.</p>
+                <p>Perangkat lunak pemroses instruksi logika & antarmuka sistem.</p>
+            </div>
+            <div class="menu-card" onclick="switchTab('brainware', this)">
+                <div class="icon">🧠</div>
+                <h3>Brainware</h3>
+                <p>SDM/Manusia pengoperasi, pengembang & pengelola komputasi.</p>
             </div>
             <div class="menu-card" onclick="switchTab('jaringan', this)">
                 <div class="icon">🌐</div>
                 <h3>Jaringan Komputer</h3>
-                <p>Arsitektur komunikasi antar-perangkat dan internet.</p>
+                <p>Infrastruktur komunikasi data, internet, protokol & akses siber.</p>
             </div>
         </section>
 
+        <!-- TAB 1: HARDWARE -->
         <section id="hardware" class="content-section active">
-            <h2>🔌 Eksplorasi Perangkat Keras (Hardware)</h2>
+            <h2>🔌 Perangkat Keras (Hardware)</h2>
+            <p style="margin-bottom: 20px; color: var(--text-muted);">
+                Perangkat keras adalah semua bagian fisik komputer yang dapat disentuh dan dilihat. Berdasarkan alur sistem komputasi modern ($Input \rightarrow Processing \rightarrow Storage \rightarrow Output$), hardware dikelompokkan sebagai berikut:
+            </p>
             
             <div class="category-block">
                 <h3>1. Perangkat Masukan (Input Device)</h3>
-                <p>Perangkat yang berfungsi untuk memasukkan data atau perintah dari pengguna ke dalam komputer.</p>
+                <p>Perangkat untuk memasukkan data, sinyal, atau perintah dari pengguna ke dalam komputer.</p>
                 <div class="item-grid">
-                    <div class="item-card"><div class="img-container"><img src="img/keyboard.png" alt="Keyboard"></div><h4>Keyboard</h4><p>Mengetik teks, karakter, dan memasukkan perintah pintasan ke sistem.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="img/mouse.png" alt="Mouse"></div><h4>Mouse / Touchpad</h4><p>Menggerakkan kursor grafik serta mengeksekusi aksi klik objek di layar.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="img/scanner.png" alt="Scanner"></div><h4>Scanner</h4><p>Mengubah lembaran dokumen fisik/cetak menjadi berkas format digital.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="img/mikrofon.png" alt="Mikrofon"></div><h4>Mikrofon</h4><p>Menangkap gelombang audio lalu memasukkannya berupa data suara.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="img/webcam.png" alt="Webcam"></div><h4>Kamera / Webcam</h4><p>Mengambil perekaman gambar visual statis maupun siaran video secara langsung.</p></div>
+                    <div class="item-card">
+                        <div class="img-container"><img src="img/keyboard.png" alt="Keyboard" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888708.png'"></div>
+                        <h4>Keyboard</h4>
+                        <p>Mengetik teks, angka, dan memasukkan perintah pintasan ke dalam sistem.</p>
+                    </div>
+                    <div class="item-card">
+                        <div class="img-container"><img src="img/mouse.png" alt="Mouse" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888711.png'"></div>
+                        <h4>Mouse / Touchpad</h4>
+                        <p>Mengendalikan kursor pointer dan mengeksekusi klik perintah visual.</p>
+                    </div>
+                    <div class="item-card">
+                        <div class="img-container"><img src="img/scanner.png" alt="Scanner" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888723.png'"></div>
+                        <h4>Scanner & Barcode Reader</h4>
+                        <p>Konversi dokumen cetak atau kode optik fisik menjadi citra berkas digital.</p>
+                    </div>
+                    <div class="item-card">
+                        <div class="img-container"><img src="img/webcam.png" alt="Webcam" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888705.png'"></div>
+                        <h4>Mikrofon & Webcam</h4>
+                        <p>Menangkap masukan suara audio dan rekaman sinyal gambar visual digital.</p>
+                    </div>
                 </div>
             </div>
 
             <div class="category-block">
                 <h3>2. Perangkat Pemrosesan (Processing Device)</h3>
-                <p>Otak komputer yang berfungsi untuk mengolah, menghitung, dan memproses data dari perangkat masukan.</p>
+                <p>Komponen inti penyedia daya hitung, eksekusi kode instruksi, dan kontrol sinyal elektronik.</p>
                 <div class="item-grid">
-                    <div class="item-card"><div class="img-container"><img src="img/cpu.png" alt="CPU"></div><h4>CPU</h4><p>Pusat kendali komputer utama yang mengeksekusi semua logika aritmetika instruksi program.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="img/motherboard.png" alt="Motherboard"></div><h4>Motherboard</h4><p>Papan induk sirkuit elektrik utama sebagai wadah penyambung semua modul internal hardware.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="img/gpu.png" alt="GPU"></div><h4>GPU / Kartu Grafis</h4><p>Akselerator khusus untuk komputasi render visual, grafis 3D, pengolahan video, dan beban kerja AI.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="img/ram.png" alt="RAM"></div><h4>RAM</h4><p>Memori penyimpanan jangka pendek super cepat untuk menyimpan antrean beban aplikasi aktif.</p></div>
+                    <div class="item-card">
+                        <span class="tag-badge">Core Brain</span>
+                        <div class="img-container"><img src="img/cpu.png" alt="CPU" onerror="this.src='https://cdn-icons-png.flaticon.com/512/900/900618.png'"></div>
+                        <h4>CPU (Processor)</h4>
+                        <p>Pusat logika arithmetic & control unit yang mengolah perintah instruksi program.</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">Circuit Hub</span>
+                        <div class="img-container"><img src="img/motherboard.png" alt="Motherboard" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888714.png'"></div>
+                        <h4>Motherboard</h4>
+                        <p>Papan sirkuit utama penampung bus dan penyambung antar-modul internal.</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">Graphics & AI</span>
+                        <div class="img-container"><img src="img/gpu.png" alt="GPU" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888719.png'"></div>
+                        <h4>GPU / Kartu Grafis</h4>
+                        <p>Akselerator paralel komputasi visual, render 3D, dan pemrosesan bobot model AI.</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">Volatile Memory</span>
+                        <div class="img-container"><img src="img/ram.png" alt="RAM" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888716.png'"></div>
+                        <h4>RAM (Random Access Memory)</h4>
+                        <p>Memori kerja acak berkecepatan tinggi tempat data program yang sedang berjalan disimpan sementara.</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">Power Control</span>
+                        <div class="img-container"><img src="img/psu.jpg" alt="PSU" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888725.png'"></div>
+                        <h4>Power Supply (PSU)</h4>
+                        <p>Mengubah arus bolak-balik AC listrik PLN menjadi arus searah DC stabil untuk komponen internal.</p>
+                    </div>
                 </div>
             </div>
 
             <div class="category-block">
                 <h3>3. Perangkat Penyimpanan (Storage Device)</h3>
-                <p>Perangkat yang digunakan untuk menyimpan data secara permanen, baik sistem operasi, aplikasi, maupun berkas mandiri.</p>
+                <p>Media non-volatile untuk menyimpan OS, program aplikasi, serta berkas data secara permanen.</p>
                 <div class="item-grid">
-                    <div class="item-card"><div class="img-container"><img src="img/ssd.jpg" alt="SSD"></div><h4>SSD (Solid State Drive)</h4><p>Media penyimpanan modern berbasis chip flash memory yang memberikan performa baca/tulis kilat tanpa komponen mekanis.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="img/hdd.jpg" alt="HDD"></div><h4>HDD (Hard Disk Drive)</h4><p>Media penyimpanan piringan magnetik tradisional dengan kapasitas ruang besar namun transfer data lambat.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="img/flashdisk.png" alt="Flashdisk"></div><h4>Flashdisk / MMC</h4><p>Penyimpanan portabel berukuran micro yang fleksibel digunakan untuk mobilitas pemindahan file.</p></div>
+                    <div class="item-card">
+                        <span class="tag-badge">High Speed Flash</span>
+                        <div class="img-container"><img src="img/ssd.jpg" alt="SSD" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888702.png'"></div>
+                        <h4>SSD (Solid State Drive)</h4>
+                        <p>Penyimpanan flash NVMe/SATA modern berkecepatan kilat tanpa bagian mekanis bergerak.</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">Magnetic Disc</span>
+                        <div class="img-container"><img src="img/hdd.jpg" alt="HDD" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888701.png'"></div>
+                        <h4>HDD (Hard Disk Drive)</h4>
+                        <p>Penyimpanan piringan magnetik kapasitas besar untuk pengarsipan data jangka panjang.</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">Portable</span>
+                        <div class="img-container"><img src="img/flashdisk.png" alt="Flashdisk" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888718.png'"></div>
+                        <h4>Flashdrive / Memory Card</h4>
+                        <p>Media penyimpanan USB ringkas yang fleksibel dibawa untuk pemindahan data antar perangkat.</p>
+                    </div>
                 </div>
             </div>
 
             <div class="category-block">
                 <h3>4. Perangkat Keluaran (Output Device)</h3>
-                <p>Perangkat yang berfungsi untuk menampilkan atau mengeluarkan hasil pemrosesan data komputer ke pengguna akhir.</p>
+                <p>Media penerjemah hasil pemrosesan komputer agar dapat dipahami dan digunakan manusia.</p>
                 <div class="item-grid">
-                    <div class="item-card"><div class="img-container"><img src="img/monitor.jpg" alt="Monitor"></div><h4>Monitor</h4><p>Layar penampil antarmuka grafis sistem, berkas teks, gambar, hingga aplikasi.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="img/printer.jpg" alt="Printer"></div><h4>Printer</h4><p>Mesin pencetak yang menduplikasi berkas data teks/gambar digital ke media kertas fisik.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="img/speaker.png" alt="Speaker"></div><h4>Speaker / Headphone</h4><p>Transduser output yang mengubah sinyal elektrik digital menjadi gelombang suara yang terdengar.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="img/proyektor.jpg" alt="Proyektor"></div><h4>Proyektor</h4><p>Alat optik yang memancarkan berkas proyeksi gambar komputer ke permukaan dinding datar lebar.</p></div>
+                    <div class="item-card">
+                        <div class="img-container"><img src="img/monitor.jpg" alt="Monitor" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888706.png'"></div>
+                        <h4>Monitor</h4>
+                        <p>Menampilkan antarmuka grafis sistem (GUI), gambar, teks, dan rekaman video digital.</p>
+                    </div>
+                    <div class="item-card">
+                        <div class="img-container"><img src="img/printer.jpg" alt="Printer" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888721.png'"></div>
+                        <h4>Printer & Plotter</h4>
+                        <p>Mencetak dokumen data berupa teks atau grafis digital ke media fisik kertas/banner.</p>
+                    </div>
+                    <div class="item-card">
+                        <div class="img-container"><img src="img/speaker.png" alt="Speaker" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888726.png'"></div>
+                        <h4>Speaker / Headset</h4>
+                        <p>Transduser audio yang mengonversi sinyal sinyal elektrik digital menjadi gelombang suara.</p>
+                    </div>
                 </div>
             </div>
 
             <div class="category-block">
-                <h3>Video Pembelajaran</h3>
-                <div class="item-grid">
-                    <div class="item-card">
-                        <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/Kq1PqZHAJmY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
+                <h3>📺 Video Pembelajaran Hardware</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/Kq1PqZHAJmY" title="Materi Hardware Komputer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
+            <!-- Mini Game Simulasi -->
             <div class="game-container">
-                <h3 style="color:#0f172a; background:none; padding:0; margin-bottom:5px;">🎮 Mini-Lab: Simulasi Merakit PC</h3>
-                <p style="color:#555;">Terapkan pemahaman logika fungsi hardware! Drag komponen di sisi kiri ke dalam wadah soket yang cocok di sisi kanan.</p>
-                <div class="assembly-zone">
-                    <div class="part-box">
-                        <div class="part-list">
+                <h3 style="color:#0f172a; margin-bottom:5px;">🎮 Mini-Lab: Simulasi Interaktif Merakit PC</h3>
+                <p style="color:#64748b; font-size: 14px; margin-bottom: 20px;">
+                    Seret (drag) komponen hardware dari kompartemen kiri menuju soket pasangannya pada papan Motherboard. Setelah semua terpasang, tekan tombol <strong>POWER ON</strong>!
+                </p>
+
+                <div class="lab-workspace" id="lab-zone" style="position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; background: #f8fafc; padding: 20px; border-radius: 12px; border: 2px solid #e2e8f0;">
+                    
+                    <div class="part-box" style="background: #fff; border: 1px solid #cbd5e1; padding: 15px; border-radius: 8px; height: max-content;">
+                        <h5 style="margin-bottom: 15px; color:#475569; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px;">Kompartemen Part</h5>
+                        <div class="part-list" style="display: flex; flex-direction: column; gap: 12px;">
                             <div class="drag-part" draggable="true" id="g-cpu">Processor (CPU)</div>
-                            <div class="drag-part" draggable="true" id="g-ram">RAM Memory</div>
-                            <div class="drag-part" draggable="true" id="g-mobo">Motherboard Board</div>
+                            <div class="drag-part" draggable="true" id="g-ram">RAM Memory (DIMM)</div>
+                            <div class="drag-part" draggable="true" id="g-psu">Power Supply Unit (PSU)</div>
                         </div>
                     </div>
-                    <div class="slots-box">
-                        <div class="target-slot" id="s-mobo" data-accept="g-mobo">Dudukan Casing Komputer</div>
-                        <div class="target-slot" id="s-cpu" data-accept="g-cpu">Soket Persegi Kunci Processor</div>
-                        <div class="target-slot" id="s-ram" data-accept="g-ram">Slot DIMM Panjang Motherboard</div>
+
+                    <div class="motherboard-board" id="main-motherboard" style="background: #0f172a; border: 4px solid #334155; border-radius: 12px; padding: 30px 20px; position: relative; display: flex; flex-direction: column; gap: 15px; align-items: center; justify-content: center; min-height: 280px;">
+                        <div style="position: absolute; top: 10px; left: 15px; color: #38bdf8; font-size: 11px; font-weight: bold; letter-spacing: 1px;">MOTHERBOARD SOCKET SYSTEM</div>
+                        
+                        <div class="target-slot" id="s-cpu" data-accept="g-cpu">
+                            [ SOKET PROCESSOR ]
+                        </div>
+
+                        <div class="target-slot" id="s-ram" data-accept="g-ram">
+                            [ SLOT MEMORI RAM ]
+                        </div>
+
+                        <div class="target-slot" id="s-psu" data-accept="g-psu">
+                            [ KONEKTOR POWER ATX 24-PIN ]
+                        </div>
                     </div>
                 </div>
-                <div class="game-controls"><button class="btn-game" onclick="resetAssemblyGame()">Reset Perakitan</button></div>
-                <div id="assembly-message" class="message"></div>
+
+                <div class="game-controls" style="text-align: center; margin-top: 25px; display: flex; justify-content: center; align-items: center; gap: 20px;">
+                    <button id="power-btn" onclick="validateAssembly()" style="background: #1e293b; color: #64748b; border: 4px solid #475569; width: 75px; height: 75px; border-radius: 50%; font-weight: bold; font-size: 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.3s;">
+                        <span style="font-size: 22px; line-height: 1;">⏻</span>
+                        <span style="font-size: 10px; margin-top: 2px;">POWER</span>
+                    </button>
+                    <button class="btn-game" onclick="resetAssemblyGame()" style="background:#64748b; height: 45px;">Reset Lab</button>
+                </div>
+                
+                <div id="assembly-message" style="margin-top: 15px; text-align: center; font-weight: 600; font-size: 16px; min-height: 24px;"></div>
             </div>
         </section>
 
+        <!-- TAB 2: SOFTWARE -->
         <section id="software" class="content-section">
-            <h2>💿 Eksplorasi Perangkat Lunak (Software)</h2>
+            <h2>💿 Perangkat Lunak (Software)</h2>
+            <p style="margin-bottom: 20px; color: var(--text-muted);">
+                Software adalah kumpulan perintah, instruksi logika, atau data tersusun yang memberi tahu komputer cara bekerja. Software tidak memiliki wujud fisik dan dibagi menjadi tiga kategori utama:
+            </p>
+
             <div class="category-block">
                 <h3>1. Perangkat Lunak Sistem (System Software)</h3>
-                <p>Perangkat utama pembentuk dasar operasional yang mengelola alokasi hardware internal.</p>
+                <p>Kategori inti yang mengelola hardware, memori, manajemen file, dan menyediakan platform dasar untuk program aplikasi.</p>
                 <div class="item-grid">
-                    <div class="item-card"><div class="img-container"><img src="" alt="Operating System"></div><h4>Sistem Operasi (OS)</h4><p>Pengendali sistem inti komputer (Contoh: Windows, Linux, macOS) yang mengatur manajemen resource memori dan disk drive.</p></div>
+                    <div class="item-card">
+                        <span class="tag-badge">Operating System</span>
+                        <div class="img-container"><img src="img/sistem_operasi.jpg" alt="OS" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2237/2237517.png'"></div>
+                        <h4>Sistem Operasi (OS)</h4>
+                        <p>Pengendali sistem inti komputer (Contoh: Microsoft Windows, Linux, macOS, Android, iOS).</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">System Utility</span>
+                        <div class="img-container"><img src="img/utility.png" alt="Utility" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2920/2920277.png'"></div>
+                        <h4>Program Utilitas</h4>
+                        <p>Software pemeliharaan dan keamanan sistem (Contoh: Antivirus, Disk Defragmenter, File Archiver/WinRAR).</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">Firmware</span>
+                        <div class="img-container"><img src="img/bios.png" alt="BIOS" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888714.png'"></div>
+                        <h4>BIOS / UEFI (Firmware)</h4>
+                        <p>Program tingkat rendah yang tertanam pada chip motherboard untuk inisialisasi boot hardware saat awal dinyalakan.</p>
+                    </div>
                 </div>
             </div>
+
             <div class="category-block">
                 <h3>2. Perangkat Lunak Aplikasi (Application Software)</h3>
-                <p>Program pelengkap modular khusus yang dieksekusi user untuk menunjang aktivitas produktivitas atau hiburan.</p>
-                <div class="item-grid">
-                    <div class="item-card"><div class="img-container"><img src="" alt="Web Browser"></div><h4>Web Browser</h4><p>Pintu akses berselancar internet (Contoh: Google Chrome, Firefox) untuk memuat skrip web.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="" alt="Code Editor"></div><h4>Editor Kode / IDE</h4><p>Lingkungan penulisan baris sintaks bahasa pemrograman (Contoh: VS Code) bagi developer web/mobile.</p></div>
-                </div>
-            </div>
-            <div class="category-block">
-                <h3>Video Pembelajaran</h3>
+                <p>Program modular khusus yang dirancang untuk membantu pengguna menyelesaikan tugas tertentu secara langsung.</p>
                 <div class="item-grid">
                     <div class="item-card">
-                        <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/A1tkLAnO52o" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                        </iframe>
-                        </div>
+                        <div class="img-container"><img src="img/web_browser.jpg" alt="Browser" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3003/3003010.png'"></div>
+                        <h4>Peramban Web (Web Browser)</h4>
+                        <p>Aplikasi penjelajah web (Contoh: Google Chrome, Mozilla Firefox, Microsoft Edge, Safari).</p>
                     </div>
+                    <div class="item-card">
+                        <div class="img-container"><img src="img/office.png" alt="Office" onerror="this.src='https://cdn-icons-png.flaticon.com/512/888/888865.png'"></div>
+                        <h4>Aplikasi Produktivitas</h4>
+                        <p>Pengolah kata, lembar kerja, dan presentasi (Contoh: MS Office, Google Workspace, LibreOffice).</p>
+                    </div>
+                    <div class="item-card">
+                        <div class="img-container"><img src="img/text_editor.png" alt="IDE" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1126/1126012.png'"></div>
+                        <h4>Code Editor / IDE</h4>
+                        <p>Lingkungan penulisan & debug sintaks pemrograman bagi developer (Contoh: VS Code, PyCharm).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-block">
+                <h3>3. Model Lisensi Perangkat Lunak</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div style="background:#f1f5f9; padding: 15px; border-radius:8px; border-left: 4px solid #0284c7;">
+                        <h4 style="color:#0284c7;">Open Source (Sumber Terbuka)</h4>
+                        <p style="font-size:0.88rem; color:#475569;">Kode sumber terbuka untuk umum, bebas dimodifikasi, dan didistribusikan secara beretika. Contoh: Linux OS, Python, Blender.</p>
+                    </div>
+                    <div style="background:#f1f5f9; padding: 15px; border-radius:8px; border-left: 4px solid #e11d48;">
+                        <h4 style="color:#e11d48;">Proprietary / Closed Source</h4>
+                        <p style="font-size:0.88rem; color:#475569;">Kode sumber dilindungi hak cipta, tidak dipublikasikan, dan biasanya berbayar. Contoh: Windows, Adobe Photoshop, macOS.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-block">
+                <h3>📺 Video Pembelajaran Software</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/A1tkLAnO52o" title="Materi Software Komputer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
 
+        <!-- TAB 3: BRAINWARE (TAMBAHAN UTAMA) -->
+        <section id="brainware" class="content-section">
+            <h2>🧠 Pengguna Komputer (Brainware)</h2>
+            <p style="margin-bottom: 20px; color: var(--text-muted);">
+                <strong>Brainware</strong> adalah sumber daya manusia (SDM) yang terlibat dalam mengoperasikan, merancang, mengelola, serta memelihara sistem komputer. Tanpa Brainware, hardware dan software tidak akan dapat berfungsi secara efisien.
+            </p>
+
+            <div class="category-block">
+                <h3>1. Klasifikasi Peran Brainware dalam Dunia IT</h3>
+                <p>Berdasarkan tingkat keahlian dan tanggung jawabnya, Brainware dibedakan menjadi beberapa profesi:</p>
+                <div class="item-grid">
+                    <div class="item-card">
+                        <span class="tag-badge">Architecture & Design</span>
+                        <div class="img-container"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="System Analyst"></div>
+                        <h4>System Analyst</h4>
+                        <p>Menganalisis kebutuhan sistem, merancang arsitektur perangkat lunak, serta merencanakan alur kerja proyek komputasi.</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">Development</span>
+                        <div class="img-container"><img src="https://cdn-icons-png.flaticon.com/512/609/609062.png" alt="Programmer"></div>
+                        <h4>Programmer / Software Engineer</h4>
+                        <p>Menulis kode sintaks pemrograman (Javascript, Python, C++) untuk menciptakan aplikasi atau sistem informasi.</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">Infrastructure & Security</span>
+                        <div class="img-container"><img src="https://cdn-icons-png.flaticon.com/512/8630/8630232.png" alt="Network Administrator"></div>
+                        <h4>Network & Security Administrator</h4>
+                        <p>Mengelola lalu lintas jaringan, memelihara router/server, dan mengamankan sistem dari kejahatan siber (cybersecurity).</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">Data Management</span>
+                        <div class="img-container"><img src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png" alt="DBA"></div>
+                        <h4>Database Administrator (DBA)</h4>
+                        <p>Mengorganisasi, menyimpan, serta menjamin integritas data dan keamanan basis data organisasi.</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">Operation</span>
+                        <div class="img-container"><img src="https://cdn-icons-png.flaticon.com/512/4333/4333609.png" alt="Operator"></div>
+                        <h4>Operator Komputer</h4>
+                        <p>Menjalankan sistem program harian, memantau entri data, serta menangani pemeliharaan dasar perangkat.</p>
+                    </div>
+                    <div class="item-card">
+                        <span class="tag-badge">End User</span>
+                        <div class="img-container"><img src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png" alt="User"></div>
+                        <h4>End-User (Pengguna Akhir)</h4>
+                        <p>Masyarakat umum yang memanfaatkan aplikasi komputer untuk membantu tugas, komunikasi, atau hiburan harian.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-block">
+                <h3>2. Etika Digital & Kewarganegaraan Digital (Netiquette)</h3>
+                <p>Seorang Brainware yang bijak tidak hanya menguasai kemampuan teknis, tetapi juga menerapkan etika digital:</p>
+                <ul style="padding-left:20px; color:var(--text-muted); font-size:0.95rem; line-height:1.8;">
+                    <li><strong>Kekayaan Intelektual:</strong> Menghargai hak cipta software, tidak mengunduh software bajakan, dan menyebutkan sumber karya orang lain.</li>
+                    <li><strong>Keamanan Informasi:</strong> Menjaga kerahasiaan kata sandi (password) dan data pribadi dari potensi kebocoran.</li>
+                    <li><strong>Netiket (Net Etiquette):</strong> Berkomunikasi secara santun di ruang siber serta menghindari ujaran kebencian (*hate speech*) maupun *hoax*.</li>
+                </ul>
+            </div>
+
+            <!-- Interactive Quiz Brainware -->
+            <div class="game-container">
+                <h3 style="color:#0f172a; margin-bottom:10px;">🧪 Kuis Cepat: Tes Profesi Brainware</h3>
+                <p style="color:#64748b; font-size: 14px; margin-bottom: 15px;">
+                    <strong>Pertanyaan:</strong> "Budi merancang struktur logika dan alur kerja aplikasi belanja online, lalu mengirimkan spesifikasi teknis tersebut kepada tim pengembang untuk dituliskan kodenya." Apakah peran Budi?
+                </p>
+                
+                <div id="quiz-options">
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">A. Operator Komputer</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">B. System Analyst</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">C. Database Administrator</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">D. Network Engineer</div>
+                </div>
+                <div id="quiz-feedback" style="margin-top: 10px; font-weight: 600;"></div>
+            </div>
+        </section>
+
+        <!-- TAB 4: JARINGAN KOMPUTER & INTERNET -->
         <section id="jaringan" class="content-section">
             <h2>🌐 Infrastruktur Jaringan Komputer & Internet</h2>
+            <p style="margin-bottom: 20px; color: var(--text-muted);">
+                Jaringan komputer adalah sistem yang menghubungkan dua atau lebih perangkat komputer untuk saling berbagi sumber daya (data, berkas, printer) dan berkomunikasi secara elektronik.
+            </p>
+
             <div class="category-block">
-                <h3>1. Perangkat Jaringan (Networking Device)</h3>
-                <p>Hardware khusus penunjang interkoneksi lalu lintas transmisi data antar-node komputer terenkripsi.</p>
-                <div class="item-grid">
-                    <div class="item-card"><div class="img-container"><img src="" alt="Modem"></div><h4>Modem</h4><p>Modulator-demodulator yang menerjemahkan sinyal ISP penyedia internet luar menjadi jalur data digital lokal.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="" alt="Router"></div><h4>Router</h4><p>Perute cerdas yang memetakan gerbang IP address, menjembatani submateri routing, dan memancarkan sinyal Wi-Fi nirkabel.</p></div>
-                    <div class="item-card"><div class="img-container"><img src="" alt="LAN Card"></div><h4>NIC / LAN Card</h4><p>Kartu kendali antar muka jaringan kabel ethernet fisik sebagai modul penerima paket data.</p></div>
-                </div>
-            </div>
-            <div class="category-block">
-                <h3>Video Pembelajaran</h3>
+                <h3>1. Perangkat Jaringan (Networking Hardware)</h3>
+                <p>Hardware khusus penunjang interkoneksi lalu lintas transmisi data antar-node komputer.</p>
                 <div class="item-grid">
                     <div class="item-card">
-                        <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/WPhjxoVDygk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                        </iframe>
-                        </div>
+                        <div class="img-container"><img src="img/modem.jpg" alt="Modem" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888730.png'"></div>
+                        <h4>Modem</h4>
+                        <p>Modulator-demodulator yang menerjemahkan sinyal penyedia ISP menjadi data digital lokal.</p>
                     </div>
+                    <div class="item-card">
+                        <div class="img-container"><img src="img/router.webp" alt="Router" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888732.png'"></div>
+                        <h4>Router & Access Point</h4>
+                        <p>Perute pintar pemeta alamat IP yang mengarahkan paket data serta memancarkan sinyal Wi-Fi nirkabel.</p>
+                    </div>
+                    <div class="item-card">
+                        <div class="img-container"><img src="img/lan_card.jpg" alt="LAN Card" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2888/2888728.png'"></div>
+                        <h4>NIC / LAN Card & Switch</h4>
+                        <p>Kartu antarmuka fisik penerima paket data ethernet kabel dalam jaringan area lokal (LAN).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-block">
+                <h3>2. Jangkauan Area Jaringan Komputer</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:15px; border-radius:10px;">
+                        <h4 style="color:var(--primary);">PAN (Personal Area)</h4>
+                        <p style="font-size:0.85rem; color:#64748b; margin-top:5px;">Jangkauan jarak dekat (1-10m), contoh: Bluetooth, koneksi smartwatch.</p>
+                    </div>
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:15px; border-radius:10px;">
+                        <h4 style="color:var(--primary);">LAN (Local Area)</h4>
+                        <p style="font-size:0.85rem; color:#64748b; margin-top:5px;">Jaringan gedung, lab sekolah, atau rumah dengan kecepatan tinggi.</p>
+                    </div>
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:15px; border-radius:10px;">
+                        <h4 style="color:var(--primary);">MAN (Metropolitan Area)</h4>
+                        <p style="font-size:0.85rem; color:#64748b; margin-top:5px;">Menghubungkan jaringan antar-kantor/kampus dalam satu kota.</p>
+                    </div>
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:15px; border-radius:10px;">
+                        <h4 style="color:var(--primary);">WAN (Wide Area)</h4>
+                        <p style="font-size:0.85rem; color:#64748b; margin-top:5px;">Jangkauan lintas negara/benua terkoneksi jaringan Internet global.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-block">
+                <h3>3. Protokol & Keamanan Internet</h3>
+                <p>Standar aturan komunikasi data di internet:</p>
+                <ul style="padding-left:20px; color:var(--text-muted); font-size:0.95rem; line-height:1.8;">
+                    <li><strong>IP Address & DNS:</strong> Pengalamatan numerik unik perangkat dan penerjemah nama domain (contoh: <code>google.com</code> $\rightarrow$ IP server).</li>
+                    <li><strong>HTTP / HTTPS:</strong> Protokol pengiriman dokumen web. Sinyal "S" menunjukkan lalu lintas terenkripsi aman (SSL/TLS).</li>
+                    <li><strong>Firewall:</strong> Sistem penyaring keamanan penolak akses ilegal tak dikenal dari jaringan luar.</li>
+                </ul>
+            </div>
+
+            <div class="category-block">
+                <h3>📺 Video Pembelajaran Jaringan Komputer</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/WPhjxoVDygk" title="Materi Jaringan Komputer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
 
+        <!-- Sumber Referensi -->
         <section class="section-card" style="margin-top:25px;">
-            <h2>📚 Sumber Referensi Materi</h2>
+            <h2>📚 Sumber Referensi Materi Terupdate</h2>
             <ul class="source-list">
-                <li>Buku Siswa Informatika SMK/SMA Kelas X, Elemen Sistem Komputer & Jaringan Komputer Internet, Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI.</li>
-                <li>Modul Ajar Dasar Pemasangan Hardware & Pengenalan Perangkat Jaringan Telekomunikasi Cisco.</li>
+                <li>Buku Siswa Informatika SMA/SMK Kelas X, Elemen Sistem Komputer & Jaringan Komputer/Internet, Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI (Kurikulum Merdeka 2024-2026).</li>
+                <li>Modul Ajar Cisco Networking Academy - Essentials of Computer Systems & IT Infrastructure.</li>
+                <li>Standar Kategori Profesi Teknologi Informasi Komunikasi (SKKNI Bidang Komputer).</li>
             </ul>
         </section>
 
-        <footer>© Copyright RSENSEI 2026</footer>
+        <footer>© Copyright RSENSEI 2026 - Media Pembelajaran Informatika Kelas X</footer>
     </div>
 
-    <script type="application/javascript" src="js/siskom.js"></script>
+    <!-- LOGIKA JAVASCRIPT -->
+    <script>
+        // Switcher Tab
+        function switchTab(tabId, element) {
+            const sections = document.querySelectorAll('.content-section');
+            const cards = document.querySelectorAll('.menu-card');
+
+            sections.forEach(sec => sec.classList.remove('active'));
+            cards.forEach(card => card.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            element.classList.add('active');
+        }
+
+        // Logic Drag & Drop Game Merakit PC
+        const draggables = document.querySelectorAll('.drag-part');
+        const slots = document.querySelectorAll('.target-slot');
+        let placedCount = 0;
+
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', draggable.id);
+            });
+        });
+
+        slots.forEach(slot => {
+            slot.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                slot.classList.add('hovered');
+            });
+
+            slot.addEventListener('dragleave', () => {
+                slot.classList.remove('hovered');
+            });
+
+            slot.addEventListener('drop', (e) => {
+                e.preventDefault();
+                slot.classList.remove('hovered');
+                const dragId = e.dataTransfer.getData('text/plain');
+                const targetAccept = slot.getAttribute('data-accept');
+
+                if (dragId === targetAccept && !slot.classList.contains('filled')) {
+                    const dragElement = document.getElementById(dragId);
+                    slot.innerHTML = `✅ ${dragElement.innerText} Terpasang!`;
+                    slot.classList.add('filled');
+                    dragElement.classList.add('placed');
+                    dragElement.setAttribute('draggable', 'false');
+                    placedCount++;
+
+                    const msg = document.getElementById('assembly-message');
+                    msg.style.color = "#0284c7";
+                    msg.innerText = `Komponen (${placedCount}/3) berhasil dipasang!`;
+                } else if (dragId !== targetAccept) {
+                    const msg = document.getElementById('assembly-message');
+                    msg.style.color = "#ef4444";
+                    msg.innerText = "❌ Komponen tidak sesuai dengan soket port ini!";
+                }
+            });
+        });
+
+        function validateAssembly() {
+            const powerBtn = document.getElementById('power-btn');
+            const msg = document.getElementById('assembly-message');
+
+            if (placedCount === 3) {
+                powerBtn.style.background = "#22c55e";
+                powerBtn.style.borderColor = "#4ade80";
+                powerBtn.style.color = "#ffffff";
+                powerBtn.style.boxShadow = "0 0 20px rgba(34, 197, 94, 0.6)";
+
+                msg.style.color = "#16a34a";
+                msg.innerHTML = "🎉 BOOTING BERHASIL! Komputer Menyala. Sistem Operasi Siap Digunakan!";
+            } else {
+                powerBtn.style.background = "#ef4444";
+                powerBtn.style.borderColor = "#f87171";
+                powerBtn.style.color = "#ffffff";
+
+                msg.style.color = "#dc2626";
+                msg.innerHTML = "⚠️ Gagal Menyala! Masih ada komponen vital hardware yang belum terpasang.";
+
+                setTimeout(() => {
+                    powerBtn.style.background = "#1e293b";
+                    powerBtn.style.borderColor = "#475569";
+                    powerBtn.style.color = "#64748b";
+                }, 1500);
+            }
+        }
+
+        function resetAssemblyGame() {
+            placedCount = 0;
+            const msg = document.getElementById('assembly-message');
+            msg.innerText = "";
+
+            const powerBtn = document.getElementById('power-btn');
+            powerBtn.style.background = "#1e293b";
+            powerBtn.style.borderColor = "#475569";
+            powerBtn.style.color = "#64748b";
+            powerBtn.style.boxShadow = "none";
+
+            const initialSlots = [
+                { id: 's-cpu', text: '[ SOKET PROCESSOR ]' },
+                { id: 's-ram', text: '[ SLOT MEMORI RAM ]' },
+                { id: 's-psu', text: '[ KONEKTOR POWER ATX 24-PIN ]' }
+            ];
+
+            initialSlots.forEach(s => {
+                const slotEl = document.getElementById(s.id);
+                slotEl.innerHTML = s.text;
+                slotEl.classList.remove('filled');
+            });
+
+            draggables.forEach(d => {
+                d.classList.remove('placed');
+                d.setAttribute('draggable', 'true');
+            });
+        }
+
+        // Check Quiz Brainware
+        function checkQuiz(element, isCorrect) {
+            const options = document.querySelectorAll('.quiz-option');
+            const feedback = document.getElementById('quiz-feedback');
+
+            options.forEach(opt => opt.classList.remove('correct', 'wrong'));
+
+            if (isCorrect) {
+                element.classList.add('correct');
+                feedback.style.color = "#16a34a";
+                feedback.innerText = "Jawaban Tepat! 🎉 System Analyst bertugas merancang alur dan analisis sistem sebelum dikembangkan oleh programmer.";
+            } else {
+                element.classList.add('wrong');
+                feedback.style.color = "#dc2626";
+                feedback.innerText = "Jawaban belum tepat. Coba tinjau kembali definisi tugas System Analyst.";
+            }
+        }
+    </script>
 </body>
 </html>
