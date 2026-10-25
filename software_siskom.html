@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahan Ajar Informatika X SMK: Software (Perangkat Lunak)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #0284c7;
+            color: #0284c7;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-sky-200 selection:text-sky-900">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-sky-600 text-white p-2 rounded-xl shadow-md shadow-sky-500/20">
+                    <i class="fa-solid fa-laptop-code text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-bold text-sky-600 uppercase tracking-wider block">Fase E · Elemen Sistem Komputer</span>
+                    <h1 class="text-base font-bold text-slate-900 leading-none sm:text-lg">Informatika X SMK</h1>
+                </div>
+            </div>
+            
+            <!-- Quick Navigation Desktop -->
+            <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+                <a href="#pengertian" class="hover:text-sky-600 transition">Pengertian</a>
+                <a href="#trinitas" class="hover:text-sky-600 transition">Sistem Komputer</a>
+                <a href="#klasifikasi" class="hover:text-sky-600 transition">Jenis Software</a>
+                <a href="#akses" class="hover:text-sky-600 transition">Penggunaan</a>
+                <a href="#studi-kasus" class="hover:text-sky-600 transition">Studi Kasus</a>
+            </nav>
+
+            <div class="flex items-center space-x-2">
+                <a href="#studi-kasus" class="bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-sm">
+                    <i class="fa-solid fa-pen-to-square mr-1.5"></i> Diskusi
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="bg-gradient-to-b from-sky-50 via-slate-50 to-slate-50 border-b border-slate-200/60 py-12 lg:py-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center space-x-2 bg-sky-100/80 text-sky-800 text-xs font-bold px-3 py-1.5 rounded-full mb-4 border border-sky-200">
+                <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+                <span>Bahan Ajar Lanjutan Hardware</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Software (Perangkat Lunak)
+            </h1>
+            <p class="mt-4 text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Memahami bagaimana instruksi, program, dan data mengendalikan perangkat keras (hardware), mendukung pekerjaan pengguna (brainware), dan menjaga komputer tetap beroperasi secara optimal.
+            </p>
+            
+            <div class="mt-8 flex flex-wrap justify-center gap-3 text-xs sm:text-sm font-medium text-slate-600">
+                <span class="bg-white px-3.5 py-2 rounded-xl shadow-sm border border-slate-200/80 flex items-center">
+                    <i class="fa-solid fa-shield-halved text-sky-500 mr-2"></i> Pembaruan IBM & Microsoft (2026)
+                </span>
+                <span class="bg-white px-3.5 py-2 rounded-xl shadow-sm border border-slate-200/80 flex items-center">
+                    <i class="fa-solid fa-microchip text-sky-500 mr-2"></i> Integrasi Hardware-Software
+                </span>
+                <span class="bg-white px-3.5 py-2 rounded-xl shadow-sm border border-slate-200/80 flex items-center">
+                    <i class="fa-solid fa-key text-sky-500 mr-2"></i> Lisensi & Keamanan
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+
+        <!-- 1. PENGERTIAN SOFTWARE -->
+        <section id="pengertian" class="scroll-mt-20">
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center font-bold text-lg">1</div>
+                <h2 class="text-2xl font-bold text-slate-900">Pengertian Software</h2>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-6 items-stretch">
+                <div class="md:col-span-7 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <p class="text-slate-700 leading-relaxed text-base sm:text-lg mb-4">
+                            <strong>Software (perangkat lunak)</strong> adalah kumpulan program, instruksi, dan data yang digunakan untuk mengatur komputer agar dapat menjalankan tugas tertentu.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed mb-4 text-sm sm:text-base">
+                            Berbeda dengan hardware yang berupa komponen fisik, software <em>tidak dapat disentuh secara fisik</em> seperti keyboard, monitor, atau prosesor.
+                        </p>
+                    </div>
+                    <div class="bg-sky-50/80 border border-sky-100 p-4 rounded-xl text-sky-900 text-sm">
+                        <i class="fa-solid fa-quote-left text-sky-400 mr-1.5 text-lg"></i>
+                        <span class="font-semibold">Menurut IBM:</span> Software berisi instruksi atau program yang memberi tahu komputer apa yang harus dilakukan. Software memungkinkan hardware menjalankan berbagai fungsi sesuai kebutuhan pengguna.
+                    </div>
+                </div>
+
+                <div class="md:col-span-5 bg-slate-900 text-white p-6 sm:p-8 rounded-2xl shadow-md flex flex-col justify-between">
+                    <h3 class="text-base font-bold text-sky-400 uppercase tracking-wider mb-4">Contoh Software Siswa</h3>
+                    <ul class="space-y-3.5 text-sm">
+                        <li class="flex items-center space-x-3 bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
+                            <i class="fa-brands fa-windows text-blue-400 text-xl w-6 text-center"></i>
+                            <div>
+                                <span class="font-semibold block text-slate-200">Windows</span>
+                                <span class="text-xs text-slate-400">Menjalankan dan mengelola sistem komputer</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-3 bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
+                            <i class="fa-solid fa-file-word text-blue-500 text-xl w-6 text-center"></i>
+                            <div>
+                                <span class="font-semibold block text-slate-200">Microsoft Word</span>
+                                <span class="text-xs text-slate-400">Membuat dokumen & laporan</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-3 bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
+                            <i class="fa-brands fa-chrome text-yellow-400 text-xl w-6 text-center"></i>
+                            <div>
+                                <span class="font-semibold block text-slate-200">Google Chrome</span>
+                                <span class="text-xs text-slate-400">Membuka situs web & informasi</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-3 bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
+                            <i class="fa-solid fa-palette text-purple-400 text-xl w-6 text-center"></i>
+                            <div>
+                                <span class="font-semibold block text-slate-200">Canva</span>
+                                <span class="text-xs text-slate-400">Membuat desain grafis & poster</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. HUBUNGAN HARDWARE, SOFTWARE, BRAINWARE -->
+        <section id="trinitas" class="scroll-mt-20">
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center font-bold text-lg">2</div>
+                <h2 class="text-2xl font-bold text-slate-900">Hubungan Hardware, Software, & Brainware</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <!-- Hardware -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm relative overflow-hidden group hover:border-sky-300 transition">
+                    <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 text-xl">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">1. Hardware</h3>
+                    <p class="text-xs text-amber-700 font-semibold mb-3">Perangkat Keras</p>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Komponen fisik komputer yang menjalankan fungsi input, pemrosesan, output, dan penyimpanan.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500">
+                        <strong>Contoh:</strong> CPU, RAM, Keyboard, Monitor, SSD.
+                    </div>
+                </div>
+
+                <!-- Software -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm relative overflow-hidden group hover:border-sky-300 transition">
+                    <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center mb-4 text-xl">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">2. Software</h3>
+                    <p class="text-xs text-sky-700 font-semibold mb-3">Perangkat Lunak</p>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Program dan instruksi yang mengatur sumber daya komputer serta membantu pengguna bekerja.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500">
+                        <strong>Contoh:</strong> Windows, Linux, Browser, Word.
+                    </div>
+                </div>
+
+                <!-- Brainware -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm relative overflow-hidden group hover:border-sky-300 transition">
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-4 text-xl">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-1">3. Brainware</h3>
+                    <p class="text-xs text-emerald-700 font-semibold mb-3">Pengguna / Manusia</p>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Orang yang menggunakan, mengoperasikan, mengelola, atau mengembangkan sistem komputer.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500">
+                        <strong>Contoh:</strong> Siswa, Guru, Operator, Programmer.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Workflow Simulation -->
+            <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-6 sm:p-8 rounded-2xl shadow-md">
+                <h3 class="text-lg font-bold text-sky-400 mb-2 flex items-center">
+                    <i class="fa-solid fa-circle-play mr-2"></i> Simulasi Kasus Sehari-hari: Membuat Laporan Praktikum
+                </h3>
+                <p class="text-slate-300 text-sm mb-6">
+                    Alur kolaborasi interaktif antara Brainware, Software, dan Hardware saat tugas dikerjakan.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+                    <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 text-center">
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block mb-1">Langkah 1</span>
+                        <div class="text-sm font-semibold mb-1">Siswa</div>
+                        <div class="text-xs text-slate-400">Bertindak sebagai <strong>Brainware</strong></div>
+                    </div>
+                    <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 text-center">
+                        <span class="text-xs font-bold text-sky-400 uppercase tracking-wider block mb-1">Langkah 2</span>
+                        <div class="text-sm font-semibold mb-1">MS Word</div>
+                        <div class="text-xs text-slate-400"><strong>Software</strong> pengolah kata</div>
+                    </div>
+                    <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 text-center">
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">Langkah 3</span>
+                        <div class="text-sm font-semibold mb-1">Keyboard</div>
+                        <div class="text-xs text-slate-400"><strong>Hardware</strong> input data</div>
+                    </div>
+                    <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 text-center">
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">Langkah 4</span>
+                        <div class="text-sm font-semibold mb-1">CPU & RAM</div>
+                        <div class="text-xs text-slate-400">Memproses instruksi</div>
+                    </div>
+                    <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 text-center">
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">Langkah 5</span>
+                        <div class="text-sm font-semibold mb-1">Monitor</div>
+                        <div class="text-xs text-slate-400">Menampilkan dokumen</div>
+                    </div>
+                    <div class="bg-slate-800/90 p-3.5 rounded-xl border border-slate-700 text-center">
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">Langkah 6</span>
+                        <div class="text-sm font-semibold mb-1">SSD / Storage</div>
+                        <div class="text-xs text-slate-400">Menyimpan berkas (Save)</div>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 text-xs text-slate-300 flex items-start space-x-3">
+                    <i class="fa-solid fa-lightbulb text-yellow-400 text-lg mt-0.5"></i>
+                    <div>
+                        <strong class="text-white">Kesimpulan Penting:</strong> Hardware menyediakan komponen fisik, software memberikan instruksi dan layanan, sedangkan brainware mengelola sistem tersebut. Ketiganya tidak selalu bekerja melalui interaksi langsung; komputer juga dapat menjalankan tugas otomatis tanpa masukan terus-menerus dari pengguna.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. JENIS-JENIS SOFTWARE -->
+        <section id="klasifikasi" class="scroll-mt-20">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center font-bold text-lg">3</div>
+                    <h2 class="text-2xl font-bold text-slate-900">Jenis-Jenis Software (Klasifikasi)</h2>
+                </div>
+            </div>
+
+            <!-- Tab Navigation for Categories -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+                <div class="flex border-b border-slate-200 overflow-x-auto scrollbar-none bg-slate-50/50">
+                    <button onclick="switchTab('system')" id="tab-system" class="tab-btn active px-5 py-3.5 text-sm font-semibold text-slate-600 whitespace-nowrap hover:text-sky-600 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-gears"></i><span>A. System Software</span>
+                    </button>
+                    <button onclick="switchTab('app')" id="tab-app" class="tab-btn px-5 py-3.5 text-sm font-semibold text-slate-600 whitespace-nowrap hover:text-sky-600 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-border-all"></i><span>B. Application Software</span>
+                    </button>
+                    <button onclick="switchTab('prog')" id="tab-prog" class="tab-btn px-5 py-3.5 text-sm font-semibold text-slate-600 whitespace-nowrap hover:text-sky-600 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-code"></i><span>C. Programming Software</span>
+                    </button>
+                    <button onclick="switchTab('util')" id="tab-util" class="tab-btn px-5 py-3.5 text-sm font-semibold text-slate-600 whitespace-nowrap hover:text-sky-600 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-wrench"></i><span>D. Utility Software</span>
+                    </button>
+                    <button onclick="switchTab('embed')" id="tab-embed" class="tab-btn px-5 py-3.5 text-sm font-semibold text-slate-600 whitespace-nowrap hover:text-sky-600 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-microchip"></i><span>E. Embedded Software</span>
+                    </button>
+                </div>
+
+                <div class="p-6 sm:p-8">
+                    <!-- Tab A: System Software -->
+                    <div id="content-system" class="tab-content space-y-6">
+                        <div class="border-b border-slate-100 pb-4">
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">A. System Software (Perangkat Lunak Sistem)</h3>
+                            <p class="text-slate-600 text-sm">Mengelola hardware dan menyediakan layanan dasar agar aplikasi lain dapat berjalan.</p>
+                        </div>
+
+                        <div class="grid lg:grid-cols-3 gap-6">
+                            <!-- OS -->
+                            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                                <div class="font-bold text-slate-900 mb-2 text-base flex items-center">
+                                    <i class="fa-solid fa-desktop text-sky-600 mr-2"></i> 1. Sistem Operasi (OS)
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">
+                                    Software utama yang mengelola sumber daya komputer (prosesor, memori, I/O, berkas, keamanan).
+                                </p>
+                                <div class="space-y-1.5 text-xs text-slate-700 bg-white p-3 rounded-lg border border-slate-200/80 mb-3">
+                                    <div><strong>Windows:</strong> Komputer pribadi, lab sekolah.</div>
+                                    <div><strong>Linux (Ubuntu):</strong> Server, edukasi, dev.</div>
+                                    <div><strong>macOS:</strong> Perangkat Mac Apple.</div>
+                                    <div><strong>Android:</strong> Smartphone & tablet.</div>
+                                </div>
+                                <span class="text-[11px] text-slate-500 block italic">*Dokumentasi Microsoft Jan 2026</span>
+                            </div>
+
+                            <!-- Driver -->
+                            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                                <div class="font-bold text-slate-900 mb-2 text-base flex items-center">
+                                    <i class="fa-solid fa-plug text-sky-600 mr-2"></i> 2. Device Driver
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">
+                                    Software penerjemah yang memungkinkan sistem operasi berkomunikasi dengan perangkat keras tertentu.
+                                </p>
+                                <ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside bg-white p-3 rounded-lg border border-slate-200/80">
+                                    <li>Driver Printer (cetak dokumen)</li>
+                                    <li>Driver Audio (suara/speaker)</li>
+                                    <li>Driver Grafis (kartu VGA)</li>
+                                </ul>
+                                <p class="text-xs text-amber-700 mt-3 font-medium">Jika driver hilang, hardware bermasalah!</p>
+                            </div>
+
+                            <!-- Firmware -->
+                            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                                <div class="font-bold text-slate-900 mb-2 text-base flex items-center">
+                                    <i class="fa-solid fa-microchip text-sky-600 mr-2"></i> 3. Firmware
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">
+                                    Software tingkat rendah yang tertanam langsung pada ROM/memori nonvolatil perangkat keras.
+                                </p>
+                                <ul class="text-xs text-slate-700 space-y-1.5 list-disc list-inside bg-white p-3 rounded-lg border border-slate-200/80">
+                                    <li>BIOS / UEFI Motherboard</li>
+                                    <li>Firmware Router Wi-Fi</li>
+                                    <li>Firmware Printer</li>
+                                </ul>
+                                <p class="text-xs text-slate-500 mt-3 italic">Melekat erat pada hardware, beda dari aplikasi biasa.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab B: Application Software -->
+                    <div id="content-app" class="tab-content hidden space-y-6">
+                        <div class="border-b border-slate-100 pb-4">
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">B. Application Software (Perangkat Lunak Aplikasi)</h3>
+                            <p class="text-slate-600 text-sm">Dibuat khusus untuk membantu pengguna menyelesaikan pekerjaan tertentu secara langsung.</p>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="p-4 border border-slate-200 rounded-xl bg-slate-50">
+                                <h4 class="font-bold text-slate-900 text-sm mb-1"><i class="fa-solid fa-file-lines text-sky-600 mr-2"></i> Pengolah Kata</h4>
+                                <p class="text-xs text-slate-600 mb-2">Membuat & mengedit surat, laporan, makalah.</p>
+                                <span class="text-xs bg-sky-100 text-sky-800 px-2 py-0.5 rounded font-medium">MS Word, Google Docs</span>
+                            </div>
+
+                            <div class="p-4 border border-slate-200 rounded-xl bg-slate-50">
+                                <h4 class="font-bold text-slate-900 text-sm mb-1"><i class="fa-solid fa-table text-emerald-600 mr-2"></i> Pengolah Angka</h4>
+                                <p class="text-xs text-slate-600 mb-2">Mengolah rumus, perhitungan, tabel & grafik.</p>
+                                <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-medium">MS Excel, Google Sheets</span>
+                            </div>
+
+                            <div class="p-4 border border-slate-200 rounded-xl bg-slate-50">
+                                <h4 class="font-bold text-slate-900 text-sm mb-1"><i class="fa-solid fa-file-powerpoint text-orange-600 mr-2"></i> Presentasi</h4>
+                                <p class="text-xs text-slate-600 mb-2">Membuat slide visual menyampaikan informasi.</p>
+                                <span class="text-xs bg-orange-100 text-orange-800 px-2 py-0.5 rounded font-medium">MS PowerPoint, Google Slides</span>
+                            </div>
+
+                            <div class="p-4 border border-slate-200 rounded-xl bg-slate-50">
+                                <h4 class="font-bold text-slate-900 text-sm mb-1"><i class="fa-solid fa-paintbrush text-purple-600 mr-2"></i> Desain Grafis</h4>
+                                <p class="text-xs text-slate-600 mb-2">Membuat poster, ilustrasi & memanipulasi gambar.</p>
+                                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-medium">Canva, Photoshop, CorelDRAW</span>
+                            </div>
+
+                            <div class="p-4 border border-slate-200 rounded-xl bg-slate-50">
+                                <h4 class="font-bold text-slate-900 text-sm mb-1"><i class="fa-solid fa-globe text-blue-600 mr-2"></i> Browser Web</h4>
+                                <p class="text-xs text-slate-600 mb-2">Aplikasi pembuka situs web (*bukan search engine).</p>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-medium">Chrome, Firefox, Edge</span>
+                            </div>
+
+                            <div class="p-4 border border-slate-200 rounded-xl bg-slate-50">
+                                <h4 class="font-bold text-slate-900 text-sm mb-1"><i class="fa-solid fa-play text-red-600 mr-2"></i> Multimedia</h4>
+                                <p class="text-xs text-slate-600 mb-2">Memutar, merekam, & mengedit media audio/video.</p>
+                                <span class="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded font-medium">VLC Media Player, Video Editor</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab C: Programming Software -->
+                    <div id="content-prog" class="tab-content hidden space-y-6">
+                        <div class="border-b border-slate-100 pb-4">
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">C. Programming Software (Perangkat Lunak Pemrograman)</h3>
+                            <p class="text-slate-600 text-sm">Perangkat lunak yang digunakan oleh pengembang/programmer untuk menulis, menguji, dan merawat program.</p>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm text-slate-600 border border-slate-200 rounded-xl">
+                                <thead class="bg-slate-100 text-slate-800 font-semibold border-b border-slate-200">
+                                    <tr>
+                                        <th class="p-3">Software / Alat</th>
+                                        <th class="p-3">Fungsi Utama</th>
+                                        <th class="p-3">Contoh Lengkap</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 bg-white">
+                                    <tr>
+                                        <td class="p-3 font-semibold text-slate-900">Code Editor</td>
+                                        <td class="p-3">Tempat menulis dan mengelola baris kode program.</td>
+                                        <td class="p-3">Visual Studio Code</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-semibold text-slate-900">Compiler</td>
+                                        <td class="p-3">Menerjemahkan kode sumber secara keseluruhan menjadi kode mesin/eksekusi.</td>
+                                        <td class="p-3">GCC, javac</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-semibold text-slate-900">Interpreter</td>
+                                        <td class="p-3">Menerjemahkan & menjalankan kode baris demi baris.</td>
+                                        <td class="p-3">Python Interpreter</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-semibold text-slate-900">Debugger</td>
+                                        <td class="p-3">Membantu melacak dan menemukan kesalahan (bug) pada program.</td>
+                                        <td class="p-3">GDB, VS Code Debugger</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-semibold text-slate-900">Version Control</td>
+                                        <td class="p-3">Melacak riwayat perubahan kode & kolaborasi tim.</td>
+                                        <td class="p-3">Git</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tab D: Utility Software -->
+                    <div id="content-util" class="tab-content hidden space-y-6">
+                        <div class="border-b border-slate-100 pb-4">
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">D. Utility Software (Perangkat Lunak Utilitas)</h3>
+                            <p class="text-slate-600 text-sm">Membantu pemeliharaan, optimalisasi, pengelolaan, dan perlindungan sistem komputer.</p>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex space-x-3">
+                                <div class="text-sky-600 text-xl font-bold"><i class="fa-solid fa-shield-virus"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-sm">Antivirus / Antimalware</h4>
+                                    <p class="text-xs text-slate-600">Mendeteksi & menangani virus/malware. Contoh: <em>Microsoft Defender</em>.</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex space-x-3">
+                                <div class="text-sky-600 text-xl font-bold"><i class="fa-solid fa-file-zipper"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-sm">Kompresi Berkas</h4>
+                                    <p class="text-xs text-slate-600">Memampatkan ukuran atau mengekstrak arsip. Contoh: <em>7-Zip, WinRAR</em>.</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex space-x-3">
+                                <div class="text-sky-600 text-xl font-bold"><i class="fa-solid fa-box-archive"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-sm">Backup Software</h4>
+                                    <p class="text-xs text-slate-600">Salinan data cadangan untuk pemulihan. Contoh: <em>Windows Backup</em>.</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex space-x-3">
+                                <div class="text-sky-600 text-xl font-bold"><i class="fa-solid fa-hard-drive"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-sm">Disk & File Management</h4>
+                                    <p class="text-xs text-slate-600">Mengelola partisi memori & struktur folder. Contoh: <em>File Explorer</em>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab E: Embedded Software -->
+                    <div id="content-embed" class="tab-content hidden space-y-6">
+                        <div class="border-b border-slate-100 pb-4">
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">E. Embedded Software (Perangkat Lunak Tertanam)</h3>
+                            <p class="text-slate-600 text-sm">Dirancang khusus untuk mengendalikan fungsi spesifik pada perangkat elektronik di luar komputer biasa.</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                                <i class="fa-solid fa-soap text-sky-600 text-2xl mb-2"></i>
+                                <h4 class="font-bold text-slate-900 text-xs">Mesin Cuci Otomatis</h4>
+                                <p class="text-[11px] text-slate-500 mt-1">Mengatur siklus bilas & putaran</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                                <i class="fa-solid fa-car text-sky-600 text-2xl mb-2"></i>
+                                <h4 class="font-bold text-slate-900 text-xs">Sistem Rem (ABS)</h4>
+                                <p class="text-[11px] text-slate-500 mt-1">Mengendalikan pengereman kendaraan</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                                <i class="fa-solid fa-camera text-sky-600 text-2xl mb-2"></i>
+                                <h4 class="font-bold text-slate-900 text-xs">Kamera Digital</h4>
+                                <p class="text-[11px] text-slate-500 mt-1">Mengolah hasil jepretan sensor</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                                <i class="fa-solid fa-temperature-arrow-up text-sky-600 text-2xl mb-2"></i>
+                                <h4 class="font-bold text-slate-900 text-xs">Sensor IoT Smart Home</h4>
+                                <p class="text-[11px] text-slate-500 mt-1">Merespons input suhu/gerak</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Matriks Perbandingan Ringkas -->
+            <div class="mt-8 bg-sky-900 text-white p-6 rounded-2xl shadow-sm">
+                <h3 class="font-bold text-base text-sky-300 mb-4">Ringkasan Cepat: Pertanyaan yang Dijawab Tiap Kategori</h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
+                    <div class="bg-sky-800/80 p-3 rounded-xl">
+                        <span class="font-bold text-sky-200 block mb-1">Sistem Operasi</span>
+                        "Bagaimana komputer mengelola hardware & aplikasi?"
+                    </div>
+                    <div class="bg-sky-800/80 p-3 rounded-xl">
+                        <span class="font-bold text-sky-200 block mb-1">Aplikasi</span>
+                        "Pekerjaan spesifik apa yang ingin diselesaikan pengguna?"
+                    </div>
+                    <div class="bg-sky-800/80 p-3 rounded-xl">
+                        <span class="font-bold text-sky-200 block mb-1">Pemrograman</span>
+                        "Alat apa yang dipakai untuk membuat software lain?"
+                    </div>
+                    <div class="bg-sky-800/80 p-3 rounded-xl">
+                        <span class="font-bold text-sky-200 block mb-1">Utilitas</span>
+                        "Bagaimana komputer dirawat dan dilindungi?"
+                    </div>
+                    <div class="bg-sky-800/80 p-3 rounded-xl">
+                        <span class="font-bold text-sky-200 block mb-1">Embedded</span>
+                        "Bagaimana fungsi khusus perangkat elektronik dikontrol?"
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SOFTWARE BERDASARKAN CARA PENGGUNAAN -->
+        <section id="akses" class="scroll-mt-20">
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center font-bold text-lg">4</div>
+                <h2 class="text-2xl font-bold text-slate-900">Software Berdasarkan Cara Penggunaannya</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Desktop -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-slate-900 text-base">A. Software Desktop</h3>
+                            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">Offline Ready</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4">Dipasang (diinstal) dan dijalankan secara lokal di komputer atau laptop.</p>
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-emerald-50 text-emerald-800 p-2.5 rounded-lg border border-emerald-100">
+                                <strong>Kelebihan:</strong> Tetap berjalan tanpa internet & memanfaatkan penuh performa fisik PC.
+                            </div>
+                            <div class="bg-rose-50 text-rose-800 p-2.5 rounded-lg border border-rose-100">
+                                <strong>Keterbatasan:</strong> Makan ruang memori/storage & perlu instalasi manual.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500">
+                        <strong>Contoh:</strong> MS Word Desktop, VLC, VS Code.
+                    </div>
+                </div>
+
+                <!-- Web Based -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-slate-900 text-base">B. Software Berbasis Web</h3>
+                            <span class="bg-blue-100 text-blue-700 text-xs px-2.5 py-1 rounded-md font-semibold">Browser Based</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4">Diakses melalui peramban (browser) web tanpa wajib menginstal aplikasi.</p>
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-emerald-50 text-emerald-800 p-2.5 rounded-lg border border-emerald-100">
+                                <strong>Kelebihan:</strong> Hemat storage, fleksibel di mana saja, mudah kolaborasi real-time.
+                            </div>
+                            <div class="bg-rose-50 text-rose-800 p-2.5 rounded-lg border border-rose-100">
+                                <strong>Keterbatasan:</strong> Sangat bergantung pada kualitas koneksi internet.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500">
+                        <strong>Contoh:</strong> Google Docs web, Canva Web.
+                    </div>
+                </div>
+
+                <!-- Cloud -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-slate-900 text-base">C. Software Cloud (SaaS)</h3>
+                            <span class="bg-purple-100 text-purple-700 text-xs px-2.5 py-1 rounded-md font-semibold">Cloud Model</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4">Memanfaatkan infrastruktur server cloud jarak jauh (Software as a Service).</p>
+                        <p class="text-xs text-slate-500 italic bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            *Catatan: Web App merujuk pada media aksesnya (browser), sedangkan Cloud merujuk pada model pemrosesan servernya.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500">
+                        <strong>Contoh:</strong> Google Workspace, Microsoft 365 Cloud.
+                    </div>
+                </div>
+
+                <!-- AI Integrated -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-slate-900 text-base">D. Fitur Kecerdasan Artifisial (AI)</h3>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-md font-semibold">Smart Assist</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-3">AI bukan kategori terpisah, melainkan fitur pintar yang disematkan pada web/desktop app.</p>
+                        <div class="bg-amber-50 p-3 rounded-lg border border-amber-200/60 text-xs text-amber-900 space-y-1">
+                            <div class="font-semibold"><i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1"></i> Hal Penting Diterapkan Siswa:</div>
+                            <p>Periksa kembali hasil AI karena bisa salah (halusinasi). Jangan pernah memasukkan data rahasia/pribadi ke sistem AI!</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500">
+                        <strong>Fungsi:</strong> Bantu draf poster, analisis data, terjemahan.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. INSTALASI, LISENSI, & KEAMANAN -->
+        <section class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center">
+                <i class="fa-solid fa-shield-halved text-sky-600 mr-3"></i> Instalasi, Lisensi, & Keamanan Software
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Lisensi -->
+                <div>
+                    <h3 class="font-bold text-slate-900 text-base mb-3 border-b border-slate-100 pb-2">1. Jenis Lisensi Software</h3>
+                    <div class="space-y-3 text-xs">
+                        <div class="p-3 bg-slate-50 rounded-xl">
+                            <span class="font-bold text-slate-800 block mb-0.5">Proprietary</span>
+                            <span class="text-slate-600">Hak cipta tertutup, diatur sepenuhnya oleh pemilik. (Contoh: MS Windows).</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl">
+                            <span class="font-bold text-emerald-800 block mb-0.5">Open Source</span>
+                            <span class="text-slate-600">Kode sumber terbuka untuk dipelajari, diubah, & dibagikan. (Contoh: Linux).</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl">
+                            <span class="font-bold text-blue-800 block mb-0.5">Freeware</span>
+                            <span class="text-slate-600">Gratis dipakai, tapi belum tentu kode sumbernya boleh diubah.</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl">
+                            <span class="font-bold text-amber-800 block mb-0.5">Shareware / Trial</span>
+                            <span class="text-slate-600">Uji coba gratis dengan batasan waktu/fitur tertentu.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tahap Instalasi -->
+                <div>
+                    <h3 class="font-bold text-slate-900 text-base mb-3 border-b border-slate-100 pb-2">2. Steps Instalasi Aman</h3>
+                    <ol class="space-y-2.5 text-xs text-slate-600 list-decimal list-inside">
+                        <li class="bg-slate-50 p-2.5 rounded-lg">Cek persyaratan spesifikasi sistem PC.</li>
+                        <li class="bg-slate-50 p-2.5 rounded-lg">Unduh dari **situs resmi** penyedia.</li>
+                        <li class="bg-slate-50 p-2.5 rounded-lg">Baca opsi & izin akses saat instalasi.</li>
+                        <li class="bg-slate-50 p-2.5 rounded-lg">Jalankan proses setup sampai selesai.</li>
+                        <li class="bg-slate-50 p-2.5 rounded-lg">Lakukan pembaruan (update) berkala.</li>
+                    </ol>
+                </div>
+
+                <!-- Keamanan -->
+                <div>
+                    <h3 class="font-bold text-slate-900 text-base mb-3 border-b border-slate-100 pb-2">3. Cyber Security Tips (CISA)</h3>
+                    <div class="bg-sky-50 p-4 rounded-xl border border-sky-100 text-xs text-slate-700 space-y-2">
+                        <p class="font-semibold text-sky-900">Kebiasaan Aman Menggunakan Komputer:</p>
+                        <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+                            <li>Hindari menunduh software **bajakan**.</li>
+                            <li>Selalu perbarui OS & Browser untuk menutup celah keamanan (vulnerability).</li>
+                            <li>Lakukan backup data penting ke media eksternal/cloud.</li>
+                            <li>Hapus (uninstall) aplikasi tak terpakai secara benar.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. STUDI KASUS & DISKUSI INTERAKTIF -->
+        <section id="studi-kasus" class="scroll-mt-20">
+            <div class="bg-slate-900 text-white p-6 sm:p-10 rounded-2xl shadow-lg">
+                <div class="max-w-3xl">
+                    <span class="bg-sky-500/20 text-sky-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Aktivitas Siswa</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold mt-3 mb-4">Studi Kasus: Komputer Laboratorium Sekolah</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        Bayangkan kamu sedang melakukan praktik di lab komputer sekolah dan menemukan kendala operasional seperti berikut:
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-8 text-xs sm:text-sm">
+                    <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 flex items-start space-x-3">
+                        <i class="fa-solid fa-circle-exclamation text-amber-400 text-lg mt-0.5"></i>
+                        <div>
+                            <span class="font-bold text-white block mb-1">Kondisi 1</span>
+                            Komputer menyala normal di desktop, tapi siswa tidak bisa mengetik laporan karena aplikasi pengolah kata hilang.
+                        </div>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 flex items-start space-x-3">
+                        <i class="fa-solid fa-print text-amber-400 text-lg mt-0.5"></i>
+                        <div>
+                            <span class="font-bold text-white block mb-1">Kondisi 2</span>
+                            Kabel printer sudah dicolokkan ke komputer, tetapi printer tetap tidak terdeteksi untuk mencetak.
+                        </div>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 flex items-start space-x-3">
+                        <i class="fa-solid fa-window-maximize text-amber-400 text-lg mt-0.5"></i>
+                        <div>
+                            <span class="font-bold text-white block mb-1">Kondisi 3</span>
+                            Browser tidak bisa membuka situs pembelajaran terbaru dan meminta pembaruan versi (update).
+                        </div>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 flex items-start space-x-3">
+                        <i class="fa-solid fa-download text-amber-400 text-lg mt-0.5"></i>
+                        <div>
+                            <span class="font-bold text-white block mb-1">Kondisi 4</span>
+                            Siswa butuh memasang aplikasi baru di komputer sekolah untuk tugas kelompok.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Discussion Toggle -->
+                <div class="border-t border-slate-800 pt-6">
+                    <h3 class="font-bold text-sky-400 text-base mb-4">Petunjuk Diskusi Mandiri (Klik untuk Jawaban Solutif)</h3>
+                    <div class="space-y-3">
+                        <details class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/80 cursor-pointer group">
+                            <summary class="font-semibold text-sm text-slate-200 group-hover:text-sky-300 transition flex justify-between items-center">
+                                <span>1. Mengapa komputer yang sudah menyala belum tentu bisa digunakan untuk mengetik laporan?</span>
+                                <i class="fa-solid fa-chevron-down text-xs transition transform group-open:rotate-180"></i>
+                            </summary>
+                            <p class="mt-3 text-xs text-slate-400 leading-relaxed pl-2 border-l-2 border-sky-500">
+                                Karena komputer baru menyediakan <strong>Sistem Operasi (System Software)</strong>. Tanpa dipasang <strong>Application Software</strong> khusus pengolah kata (seperti MS Word atau LibreOffice Writer), komputer tidak memiliki instruksi spesifik untuk memproses pembuat dokumen.
+                            </p>
+                        </details>
+
+                        <details class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/80 cursor-pointer group">
+                            <summary class="font-semibold text-sm text-slate-200 group-hover:text-sky-300 transition flex justify-between items-center">
+                                <span>2. Software apa yang diperlukan untuk membantu komputer berkomunikasi dengan printer?</span>
+                                <i class="fa-solid fa-chevron-down text-xs transition transform group-open:rotate-180"></i>
+                            </summary>
+                            <p class="mt-3 text-xs text-slate-400 leading-relaxed pl-2 border-l-2 border-sky-500">
+                                Diperlukan <strong>Device Driver (Driver Printer)</strong>. Driver bertindak sebagai penerjemah perintah dari Sistem Operasi agar dapat dipahami oleh perangkat keras printer.
+                            </p>
+                        </details>
+
+                        <details class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/80 cursor-pointer group">
+                            <summary class="font-semibold text-sm text-slate-200 group-hover:text-sky-300 transition flex justify-between items-center">
+                                <span>3. Mengapa browser dan sistem operasi perlu diperbarui secara berkala?</span>
+                                <i class="fa-solid fa-chevron-down text-xs transition transform group-open:rotate-180"></i>
+                            </summary>
+                            <p class="mt-3 text-xs text-slate-400 leading-relaxed pl-2 border-l-2 border-sky-500">
+                                Untuk menutup celah keamanan (bug/vulnerability), menambah dukungan standar web modern, serta menjaga kompatibilitas dengan aplikasi/fitur baru.
+                            </p>
+                        </details>
+
+                        <details class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/80 cursor-pointer group">
+                            <summary class="font-semibold text-sm text-slate-200 group-hover:text-sky-300 transition flex justify-between items-center">
+                                <span>4. Apa langkah yang sebaiknya dilakukan jika aplikasi harus dipasang di komputer sekolah?</span>
+                                <i class="fa-solid fa-chevron-down text-xs transition transform group-open:rotate-180"></i>
+                            </summary>
+                            <p class="mt-3 text-xs text-slate-400 leading-relaxed pl-2 border-l-2 border-sky-500">
+                                Melaporkan kepada teknisi/labkom (admin), mengunduh dari situs resmi, memeriksa kesesuaian lisensi (mengutamakan Open Source/Freeware legal), dan memindai installer dengan antivirus.
+                            </p>
+                        </details>
+                        <h3 class="font-bold text-sky-400 text-base mb-4">Password LKPD</h3>
+                        <details class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/80 cursor-pointer group">
+                            <summary class="font-semibold text-sm text-slate-200 group-hover:text-sky-300 transition flex justify-between items-center">
+                                <span>Klik untuk melihat password LKPD -></span>
+                                <i class="fa-solid fa-chevron-down text-xs transition transform group-open:rotate-180"></i>
+                            </summary>
+                            <p class="mt-3 text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-sky-500">
+                                password = LKPDSOFTWARE-SISKOM*
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 py-8 mt-12 text-xs">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <p class="font-semibold text-slate-300">Bahan Ajar Informatika X SMK · Fase E</p>
+                <p class="mt-0.5">Elemen Sistem Komputer — Materi Software (Perangkat Lunak)</p>
+            </div>
+            <div class="text-right sm:text-right">
+                <p>Mengacu standar acuan materi IBM & Microsoft</p>
+                <p class="mt-0.5 text-slate-500">Didukung panduan keamanan CISA</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE TAB SCRIPT -->
+    <script>
+        function switchTab(tabKey) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(el => el.classList.add('hidden'));
+
+            // Remove active class from buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show target content
+            const targetContent = document.getElementById('content-' + tabKey);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+            }
+
+            // Highlight target button
+            const targetBtn = document.getElementById('tab-' + tabKey);
+            if (targetBtn) {
+                targetBtn.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
